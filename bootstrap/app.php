@@ -11,7 +11,17 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->alias([
+            'localize'                => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,
+            'localizationRedirect'    => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter::class,
+            'localeSessionRedirect'   => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,
+            'localeCookieRedirect'    => \Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect::class,
+            'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
+            'role'                    => \Spatie\Permission\Middleware\RoleMiddleware::class,
+            'permission'              => \Spatie\Permission\Middleware\PermissionMiddleware::class,
+            'role_or_permission'      => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class
+        ]);
+
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
