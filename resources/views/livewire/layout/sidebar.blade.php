@@ -1,13 +1,13 @@
 <div>
     <div x-cloak x-data="{ sidebarOpen: false }">
-        <aside :class="sidebarOpen ? 'w-72' : 'w-12'"
-            class="absolute bg-slate-200 h-screen p-5 transition-all duration-300 flex flex-col text-md font-semibold ">
+        <aside class="fixed bg-gray-700 min-h-screen transition-all duration-300 flex flex-col text-md font-semibold"
+            :class="sidebarOpen ? 'w-80 p-5' : 'w-12'" @click.outside="sidebarOpen = false">
             <!-- Toggle button -->
             <button @click="sidebarOpen = !sidebarOpen"
-                class="absolute ltr:-right-3 rtl:-left-3 top-9 cursor-pointer rounded-full border-2 border-black bg-white p-1">
+                class="absolute ltr:-right-3 rtl:-left-3 top-20 mt-1.5 cursor-pointer rounded-full border-2 border-black bg-white p-1">
                 <!-- SVG icon -->
                 <svg :class="sidebarOpen ? 'rotate-270' : 'rotate-90'"
-                    class="h-6 w-6 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24"
+                    class="h-4 w-4 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                 </svg>
@@ -22,27 +22,39 @@
                 </p>
             </div>
             <!-- Sidebar menu -->
-            <ul class="flex flex-col space-y-1 overflow-y-auto overflow-x-hidden scrollbar">
+            <ul class="flex flex-col space-y-2 overflow-y-auto overflow-x-hidden scrollbar">
                 <li x-show="sidebarOpen || !sidebarOpen" class="group">
-                    <a href="#"
-                        class="flex items-center space-x-2 py-2 px-4 rounded-md text-black hover:bg-sky-300 transition-colors duration-300">
+                    <x-sidebar-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                         <!-- Icon -->
-                        <span>🏠</span>
+                        <x-icon class="w-5 h-5" name="home" />
                         <!-- Text -->
-                        <span x-show="sidebarOpen" x-cloak>{{ __('trans.home') }}</span>
-                    </a>
+                        <span x-show="sidebarOpen" x-cloak>{{ __('trans.dashboard') }}</span>
+
+                    </x-sidebar-link>
                     <hr class="border-t border-black" x-show="sidebarOpen" x-cloak />
+                </li>
+                <li x-show="sidebarOpen || !sidebarOpen" class="group">
+                    <x-sidebar-link :href="route('permissions')" :active="request()->routeIs('permissions')" wire:navigate>
+                        <!-- Icon -->
+                        <x-icon class="w-5 h-5" name="user" />
+                        <!-- Text -->
+                        <span x-show="sidebarOpen" x-cloak>{{ __('trans.permissions') }}</span>
+
+                    </x-sidebar-link>
+                    <hr class="border-t border-black " x-show="sidebarOpen" x-cloak />
                 </li>
             </ul>
             <!-- Sidebar Footer -->
-            <div class="mt-auto py-4 px-2 bg-mint-green-400 rounded-lg shadow-sm" x-show="sidebarOpen" x-cloak>
+            <div class="mt-auto bg-mint-green-400 rounded-lg shadow-sm" x-show="sidebarOpen || !sidebarOpen" x-cloak>
                 <!-- User Profile -->
                 <hr class=" mt-2 border-t border-black" x-show="sidebarOpen" x-cloak />
                 <!-- Logout Button -->
-                <button wire:click="logout"
-                    class="mt-1 w-full bg-blue-600 text-black py-2 px-4 rounded hover:bg-sky-300 focus:outline-none focus:bg-sky-300 transition-colors duration-300">
-                    {{ __('trans.logout') }}
-                </button>
+                <x-sidebar-link href="#" wire:click="logout" class="my-3">
+                    <!-- Icon -->
+                    <x-icon name="arrow-left-start-on-rectangle" class="w-5 h-5 text-2xl"/>
+                    <!-- Text -->
+                    <span x-show="sidebarOpen" x-cloak>{{ __('trans.logout') }}</span>
+                </x-sidebar-link>
             </div>
 
         </aside>

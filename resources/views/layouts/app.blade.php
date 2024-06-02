@@ -16,8 +16,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
+<body class="font-sans antialiased flex">
+    <livewire:layout.sidebar />
+    <div class="min-h-screen bg-gray-100 w-full ltr:ml-12 rtl:mr-12">
         <livewire:layout.navigation />
 
         <!-- Page Heading -->
@@ -32,11 +33,11 @@
         <x-notify />
 
         <!-- Page Content -->
-        <main class="relative">
+        <main>
 
-            <livewire:layout.sidebar />
+            
 
-            <div class="rtl:mr-12 ltr:ml-12">
+            <div class="w-full">
                 {{ $slot }}
             </div>
 
