@@ -1,10 +1,10 @@
 <div>
     <div x-cloak x-data="{ sidebarOpen: false }">
         <aside :class="sidebarOpen ? 'w-72' : 'w-12'"
-            class="relative bg-slate-200 h-screen p-5 transition-all duration-300 flex flex-col text-md font-semibold ">
+            class="absolute bg-slate-200 h-screen p-5 transition-all duration-300 flex flex-col text-md font-semibold ">
             <!-- Toggle button -->
             <button @click="sidebarOpen = !sidebarOpen"
-                class="absolute -right-3 top-9 cursor-pointer rounded-full border-2 border-black bg-white p-1">
+                class="absolute ltr:-right-3 rtl:-left-3 top-9 cursor-pointer rounded-full border-2 border-black bg-white p-1">
                 <!-- SVG icon -->
                 <svg :class="sidebarOpen ? 'rotate-270' : 'rotate-90'"
                     class="h-6 w-6 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24"
@@ -29,7 +29,7 @@
                         <!-- Icon -->
                         <span>🏠</span>
                         <!-- Text -->
-                        <span x-show="sidebarOpen" x-cloak>Home</span>
+                        <span x-show="sidebarOpen" x-cloak>{{ __('trans.home') }}</span>
                     </a>
                     <hr class="border-t border-black" x-show="sidebarOpen" x-cloak />
                 </li>
@@ -41,7 +41,7 @@
                 <!-- Logout Button -->
                 <button
                     class="mt-1 w-full bg-blue-600 text-black py-2 px-4 rounded hover:bg-sky-300 focus:outline-none focus:bg-sky-300 transition-colors duration-300">
-                    Logout
+                    {{ __('trans.logout') }}
                 </button>
             </div>
 
