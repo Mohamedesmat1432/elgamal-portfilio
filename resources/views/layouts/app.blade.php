@@ -17,8 +17,14 @@
 </head>
 
 <body class="font-sans antialiased flex">
+    <!-- Notify Component -->
+    <x-notify />
+
+    <!-- Sidebar -->
     <livewire:layout.sidebar />
+
     <div class="min-h-screen bg-gray-100 w-full ltr:ml-12 rtl:mr-12">
+        <!-- Navigatation -->
         <livewire:layout.navigation />
 
         <!-- Page Heading -->
@@ -30,17 +36,9 @@
             </header>
         @endif
 
-        <x-notify />
-
         <!-- Page Content -->
         <main>
-
-            
-
-            <div class="w-full">
-                {{ $slot }}
-            </div>
-
+            {{ $slot }}
         </main>
     </div>
 </body>
