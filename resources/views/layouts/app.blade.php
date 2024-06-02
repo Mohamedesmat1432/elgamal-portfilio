@@ -27,11 +27,16 @@
                 </header>
             @endif
 
-            <!-- Page Content -->
-            <main>
-                <x-notify />
+            <x-notify />
 
-                {{ $slot }}
+            <!-- Page Content -->
+            <main class="flex">
+
+                <livewire:layout.sidebar />
+
+                <div class="w-full">
+                    {{ $slot }}
+                </div>
 
             </main>
         </div>
