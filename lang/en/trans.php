@@ -17,6 +17,7 @@ return [
     'users' => 'Users',
     'delete_all' => 'Delete All',
     'cancel' => 'Cancel',
+    'home' => 'Home',
     'roles' => 'Roles',
     'products' => 'Products',
     'categories' => 'Categories',

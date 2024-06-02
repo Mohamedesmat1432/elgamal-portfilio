@@ -39,7 +39,7 @@
                 <!-- User Profile -->
                 <hr class=" mt-2 border-t border-black" x-show="sidebarOpen" x-cloak />
                 <!-- Logout Button -->
-                <button
+                <button wire:click="logout"
                     class="mt-1 w-full bg-blue-600 text-black py-2 px-4 rounded hover:bg-sky-300 focus:outline-none focus:bg-sky-300 transition-colors duration-300">
                     {{ __('trans.logout') }}
                 </button>

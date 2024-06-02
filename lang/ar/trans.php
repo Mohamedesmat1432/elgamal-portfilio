@@ -17,6 +17,7 @@ return [
     'users' => 'المستخدمين',
     'delete_all' => 'حذف الكل',
     'cancel' => 'الغاء',
+    'home' => 'الرئيسية',
     'roles' => 'الصالحيات',
     'products' => 'المنتجات',
     'categories' => 'اﻷقسام',
