@@ -2,12 +2,12 @@
 
 namespace App\Livewire\Layout;
 
-use App\Traits\LogoutTrait;
+use App\Traits\WithLogout;
 use Livewire\Component;
 
 class Navigation extends Component
 {
-    use LogoutTrait;
+    use WithLogout;
 
     public function render()
     {

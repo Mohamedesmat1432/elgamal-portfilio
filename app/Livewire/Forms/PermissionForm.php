@@ -5,7 +5,6 @@ namespace App\Livewire\Forms;
 use App\Models\Permission;
 use App\Traits\WithModal;
 use App\Traits\WithNotify;
-use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class PermissionForm extends Form
@@ -14,8 +13,14 @@ class PermissionForm extends Form
 
     public ?Permission $permission;
 
-    #[Validate(['required', 'string'])]
-    public $name;
+    public ?string $name = '';
+
+    public function rules()
+    {
+        return [
+            'name' => ['required', 'string', 'unique:permissions,name,' . $this->permission->id]
+        ];
+    }
 
     public function store()
     {
