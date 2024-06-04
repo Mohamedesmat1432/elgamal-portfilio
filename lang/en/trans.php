@@ -79,4 +79,5 @@ return [
     'message_update_permission' => 'Permission has been updated successfully',
     'message_delete_permission' => 'Permission has been deleted successfully',
     'message_bulk_delete_permission' => 'Permission has been bulk deleted successfully',
+    'empty_data' => 'No data founded',
 ];

@@ -79,4 +79,5 @@ return [
     'message_update_permission' => 'تم تحديث الأذن بنجاح',
     'message_delete_permission' => 'تم حذف الأذن بنجاح',
     'message_bulk_delete_permission' => 'تم حذف الأذونات بنجاح',
+    'empty_data' => 'لا يوجد بيانات',
 ];
