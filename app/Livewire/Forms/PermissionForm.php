@@ -24,7 +24,7 @@ class PermissionForm extends Form
     public function store()
     {
         $validated = $this->validate();
-        Permission::create($validated);
+        Permission::withoutTrashed()->create($validated);
     }
 
     public function setPermission($id)
