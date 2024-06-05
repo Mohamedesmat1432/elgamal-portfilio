@@ -15,6 +15,8 @@ trait WithSortable
     #[Url('')]
     public bool $sort_dir = false;
 
+    public ?int $page_count = 25;
+
     public function sortBy($field)
     {
         if ($field == $this->sort_by) {
@@ -27,5 +29,10 @@ trait WithSortable
     public function sortDir()
     {
         return $this->sort_dir ? 'ASC' : 'DESC';
+    }
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
     }
 }

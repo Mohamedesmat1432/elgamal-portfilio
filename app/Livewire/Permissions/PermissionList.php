@@ -19,7 +19,7 @@ class PermissionList extends Component
 
     public function permissions()
     {
-        return Permission::withoutTrashed()->search($this->search)->orderBy($this->sort_by, $this->sortDir())->paginate(3);
+        return Permission::withoutTrashed()->search($this->search)->orderBy($this->sort_by, $this->sortDir())->paginate($this->page_count);
     }
 
     #[On('reset-form')]
