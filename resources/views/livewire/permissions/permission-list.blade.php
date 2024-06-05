@@ -1,15 +1,11 @@
 <div>
-    <x-table>
-        <x-slot name="modal">
-            <livewire:permissions.permission-create />
-            <livewire:permissions.permission-update />
-            <livewire:permissions.permission-delete />
-            <livewire:permissions.permission-bulk-delete />
-        </x-slot>
+    <livewire:permissions.permission-create />
+    <livewire:permissions.permission-update />
+    <livewire:permissions.permission-delete />
+    <livewire:permissions.permission-bulk-delete />
 
-        {{-- tsearch --}}
-        <x-slot name="search">
-            <x-text-input type="search" wire:model.live.debounce.500ms="search"
+    <div class="p-6 my-3 flex-1">
+        <x-text-input type="search" wire:model.live.debounce.500ms="search"
                 placeholder="{{ __('trans.search') }}..." />
 
             <x-primary-button x-on:click.prevent="$dispatch('create-modal')">
@@ -17,18 +13,20 @@
             </x-primary-button>
 
             @if (count($this->form->ids) > 0)
-                <x-danger-button
+                <x-danger-button class="mt-2"
                     x-on:click.prevent="$dispatch('bulk-delete-modal', {ids: '{{ json_encode($this->form->ids) }}'})">
-                    {{ __('trans.delete_all') }}
-                    {{ count($this->form->ids) }}
+                    {{ __('trans.delete_all') }} {{ count($this->form->ids) }}
                 </x-danger-button>
             @endif
-        </x-slot>
+    </div>
+
+    <x-table>        
         {{-- thead --}}
         <x-slot name="thead">
             <tr>
                 <th class="px-6 py-4">
-                    <x-text-input type="checkbox" wire:model="form.selected_all" wire:click="selectAll"/>
+                    <x-text-input class="cursor-pointer" type="checkbox" wire:model="form.select_all"
+                        wire:click="selectAll" />
                 </th>
                 <th class="px-6 py-4">
                     <button wire:click="sortBy('id')" class="flex justify-center w-full">
@@ -42,7 +40,7 @@
                         <x-sort-icon field="name" :sort_by="$sort_by" :sort_dir="$sort_dir" />
                     </button>
                 </th>
-                <th class="px-6 py-4" colspan="2">
+                <th class="px-6 py-4">
                     {{ __('trans.action') }}
                 </th>
             </tr>
@@ -52,7 +50,8 @@
             @forelse ($this->permissions as $permission)
                 <tr wire:key="permission-{{ $permission->id }}" class="border-b border-neutral-200">
                     <td class="px-6 py-4">
-                        <x-text-input type="checkbox" wire:model.live="form.ids" value="{{ $permission->id }}" />
+                        <x-text-input class="cursor-pointer" type="checkbox" wire:model.live="form.ids"
+                            value="{{ $permission->id }}" />
                     </td>
                     <td class="px-6 py-4 font-medium">
                         {{ $permission->id }}
@@ -61,15 +60,11 @@
                         {{ $permission->name }}
                     </td>
                     <td class="px-6 py-4">
-                        <x-primary-button x-on:click.prevent="$dispatch('edit-modal', {id: '{{ $permission->id }}'})">
-                            {{ __('trans.edit') }}
-                        </x-primary-button>
-                    </td>
-                    <td class="px-6 py-4">
-                        <x-danger-button
-                            x-on:click.prevent="$dispatch('delete-modal', {id: '{{ $permission->id }}', name: '{{ $permission->name }}'})">
-                            {{ __('trans.delete') }}
-                        </x-danger-button>
+                        <x-icon name="pencil-square" class="w-10 h-10 inline-block cursor-pointer"
+                            x-on:click.prevent="$dispatch('edit-modal', {id: '{{ $permission->id }}'})" />
+
+                        <x-icon name="trash" class="w-10 h-10 text-red-600 inline-block cursor-pointer"
+                            x-on:click.prevent="$dispatch('delete-modal', {id: '{{ $permission->id }}', name: '{{ $permission->name }}'})" />
                     </td>
                 </tr>
             @empty
@@ -81,9 +76,9 @@
             @endforelse
         </x-slot>
         {{-- pagination --}}
-        <x-slot name="paginate">
-            {{ $this->permissions->withQueryString()->links() }}
-        </x-slot>
     </x-table>
+    <div class="p-6 min-w-full">
+        {{ $this->permissions->withQueryString()->links() }}
+    </div>
 
 </div>

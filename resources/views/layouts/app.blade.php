@@ -12,11 +12,14 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-    <!-- Scripts -->
+    <!-- Styles -->
+    <livewire:styles />
+
+    <!-- Vite -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased ">
+<body class="font-sans antialiased">
 
     <!-- Sidebar -->
     <livewire:layout.sidebar />
@@ -35,13 +38,16 @@
         @endif
 
         <!-- Page Content -->
-        <main>
+        <main class="w-full">
             <!-- Notify Component -->
             <x-notify />
 
             {{ $slot }}
         </main>
     </div>
+    <!-- Scripts -->
+    <livewire:scripts />
+
 </body>
 
 </html>

@@ -3,7 +3,7 @@
         <form wire:submit="delete" class="p-6">
 
             <h2 class="text-2xl font-medium text-gray-900">
-                <x-icon name="exclamation-triangle" class="w-12 h-12 text-red-600 inline-block" />
+                <x-icon name="exclamation-triangle" class="w-10 h-10 text-red-600 inline-block" />
                 {{ __('trans.delete') }}
             </h2>
 

@@ -1,8 +1,8 @@
 <div>
     <x-modal name="update-permission-modal" :show="$errors->isNotEmpty()" focusable>
         <form wire:submit="update" class="p-6">
-
-            <h2 class="text-lg font-medium text-gray-900">
+            <h2 class="text-2xl font-medium text-gray-900">
+                <x-icon name="pencil-square" class="w-10 h-10 inline-block" />
                 {{ __('trans.update') }}
             </h2>
 

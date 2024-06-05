@@ -9,7 +9,7 @@ class PermissionForm extends Form
 {
     public ?Permission $permission;
 
-    public ?bool $selected_all = false;
+    public ?bool $select_all = false;
     public ?array $ids = [];
     public ?string $id = '';
     public ?string $name = '';
@@ -58,8 +58,8 @@ class PermissionForm extends Form
 
     public function selectAll($model_data)
     {
-        if ($this->selected_all) {
-            $this->selected_all = true;
+        if ($this->select_all) {
+            $this->select_all = true;
             $this->ids = $model_data->pluck('id')->toArray();
         } else {
             $this->refresh();

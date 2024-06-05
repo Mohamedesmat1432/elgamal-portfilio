@@ -3,7 +3,7 @@
         <form wire:submit="create" class="p-6">
 
             <h2 class="text-2xl font-medium text-gray-900">
-                <x-icon name="plus-circle" class="w-12 h-12 text-blue-600 inline-block" />
+                <x-icon name="plus-circle" class="w-10 h-10 inline-block" />
                 {{ __('trans.create') }}
             </h2>
 
