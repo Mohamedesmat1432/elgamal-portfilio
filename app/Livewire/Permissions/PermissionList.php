@@ -18,35 +18,29 @@ class PermissionList extends Component
 
     public PermissionForm $form;
 
-    #[Computed()]
-    public function permissions()
+    public function render()
     {
-        return Permission::withoutTrashed()->search($this->search)
-            ->orderBy($this->sort_by, $this->sortDir())->paginate($this->page_count);
+        return view('livewire.permissions.permission-list');
     }
 
-    #[On('reset-form')]
-    public function resetForm()
+    #[Computed, On('refresh-permission-list')]
+    public function permissions()
     {
-        $this->form->reset();
-        $this->form->resetValidation();
+        // $this->authorize('permission-list');
+        return Permission::withoutTrashed()
+            ->search($this->search)
+            ->orderBy($this->sort_by, $this->sortDir())
+            ->paginate($this->page_count);
+    }
+
+    #[On('refresh-permission-list')]
+    public function refreshBulkButton()
+    {
+        $this->form->refresh();
     }
 
     public function selectAll()
     {
-        if($this->form->selected_all){
-            $this->form->ids = $this->permissions()->pluck('id')->toArray();
-            $this->form->selected_all = true;
-        } else {
-            $this->form->reset('ids', 'selected_all');
-        }
-    }
-
-    #[On('refresh-permission-list')]
-    public function render()
-    {
-        // $this->authorize('permission-list');
-
-        return view('livewire.permissions.permission-list');
+        $this->form->selectAll($this->permissions());
     }
 }

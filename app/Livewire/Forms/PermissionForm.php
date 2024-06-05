@@ -21,14 +21,22 @@ class PermissionForm extends Form
         ];
     }
 
+    public function refresh()
+    {
+        $this->reset();
+        $this->resetValidation();
+    }
+
     public function store()
     {
         $validated = $this->validate();
         Permission::withoutTrashed()->create($validated);
+        $this->refresh();
     }
 
     public function setPermission($id)
     {
+        $this->refresh();
         $this->permission = Permission::withoutTrashed()->findOrFail($id);
         $this->id = $this->permission->id;
         $this->name = $this->permission->name;
@@ -38,17 +46,30 @@ class PermissionForm extends Form
     {
         $validated = $this->validate();
         $this->permission->update($validated);
+        $this->refresh();
     }
 
     public function destroy($id)
     {
         $permission = Permission::withoutTrashed()->findOrFail($id);
         $permission->delete();
+        $this->refresh();
+    }
+
+    public function selectAll($model_data)
+    {
+        if ($this->selected_all) {
+            $this->selected_all = true;
+            $this->ids = $model_data->pluck('id')->toArray();
+        } else {
+            $this->refresh();
+        }
     }
 
     public function destroyAll($ids)
     {
         $permissions = Permission::withoutTrashed()->whereIn('id', $ids);
         $permissions->delete();
+        $this->refresh();
     }
 }

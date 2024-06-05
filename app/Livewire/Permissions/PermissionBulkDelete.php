@@ -17,16 +17,16 @@ class PermissionBulkDelete extends Component
     public function bulkDeleteModal($ids)
     {
         $this->dispatch('open-modal', 'bulk-delete-permission-modal');
+        $this->form->refresh();
         $this->form->ids = json_decode($ids);
     }
 
     public function bulkDelete()
     {
         $this->form->destroyAll($this->form->ids);
-        $this->dispatch('close-modal', 'bulk-delete-permission-modal');
         $this->dispatch('refresh-permission-list');
+        $this->dispatch('close-modal', 'bulk-delete-permission-modal');
         $this->successNotify(__('trans.message_bulk_delete_permission'));
-        $this->dispatch('reset-form');
     }
 
     public function render()

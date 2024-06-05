@@ -16,8 +16,8 @@ class PermissionDelete extends Component
     #[On('delete-modal')]
     public function deleteModal($id, $name)
     {
+        $this->dispatch('refresh-permission-list');
         $this->dispatch('open-modal', 'delete-permission-modal');
-        $this->dispatch('reset-form');
         $this->form->id = $id;
         $this->form->name = $name;
     }
@@ -25,10 +25,9 @@ class PermissionDelete extends Component
     public function delete()
     {
         $this->form->destroy($this->form->id);
-        $this->dispatch('close-modal', 'delete-permission-modal');
         $this->dispatch('refresh-permission-list');
+        $this->dispatch('close-modal', 'delete-permission-modal');
         $this->successNotify(__('trans.message_delete_permission'));
-        $this->dispatch('reset-form');
     }
 
     public function render()
