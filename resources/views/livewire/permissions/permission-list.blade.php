@@ -49,7 +49,7 @@
         </x-slot>
         {{-- tbody --}}
         <x-slot name="tbody">
-            @forelse ($permissions as $permission)
+            @forelse ($this->permissions as $permission)
                 <tr wire:key="permission-{{ $permission->id }}" class="border-b border-neutral-200">
                     <td class="px-6 py-4">
                         <x-text-input type="checkbox" wire:model.live="form.ids" value="{{ $permission->id }}" />
@@ -82,7 +82,7 @@
         </x-slot>
         {{-- pagination --}}
         <x-slot name="paginate">
-            {{ $permissions->withQueryString()->links() }}
+            {{ $this->permissions->withQueryString()->links() }}
         </x-slot>
     </x-table>
 

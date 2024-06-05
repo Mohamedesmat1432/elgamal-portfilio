@@ -15,7 +15,7 @@
                 <x-input-error :messages="$errors->get('form.name')" class="mt-2" />
             </div>
 
-            <div class="mt-6 flex ltr:justify-start rtl:justify-end">
+            <div class="mt-6 flex justify-start">
                 <x-primary-button>
                     {{ __('trans.update') }}
                 </x-primary-button>

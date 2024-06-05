@@ -2,7 +2,8 @@
     <x-modal name="create-permission-modal" :show="$errors->isNotEmpty()" focusable>
         <form wire:submit="create" class="p-6">
 
-            <h2 class="text-lg font-medium text-gray-900">
+            <h2 class="text-2xl font-medium text-gray-900">
+                <x-icon name="plus-circle" class="w-12 h-12 text-blue-600 inline-block" />
                 {{ __('trans.create') }}
             </h2>
 
@@ -15,7 +16,7 @@
                 <x-input-error :messages="$errors->get('form.name')" class="mt-2" />
             </div>
 
-            <div class="mt-6 flex ltr:justify-start rtl:justify-end">
+            <div class="mt-6 flex justify-start">
                 <x-primary-button>
                     {{ __('trans.create') }}
                 </x-primary-button>

@@ -10,7 +10,7 @@
                 <b>{{ __('trans.are_you_sure_to_want_delete') . json_encode($this->form->ids) }}</b>
             </div>
 
-            <div class="mt-6 flex ltr:justify-start rtl:justify-end">
+            <div class="mt-6 flex justify-start">
                 <x-danger-button>
                     {{ __('trans.delete_all') }}
                 </x-danger-button>

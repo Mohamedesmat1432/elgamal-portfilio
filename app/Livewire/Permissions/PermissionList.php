@@ -5,6 +5,7 @@ namespace App\Livewire\Permissions;
 use App\Livewire\Forms\PermissionForm;
 use App\Models\Permission;
 use App\Traits\WithSortable;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -17,9 +18,11 @@ class PermissionList extends Component
 
     public PermissionForm $form;
 
+    #[Computed()]
     public function permissions()
     {
-        return Permission::withoutTrashed()->search($this->search)->orderBy($this->sort_by, $this->sortDir())->paginate($this->page_count);
+        return Permission::withoutTrashed()->search($this->search)
+            ->orderBy($this->sort_by, $this->sortDir())->paginate($this->page_count);
     }
 
     #[On('reset-form')]
@@ -44,8 +47,6 @@ class PermissionList extends Component
     {
         // $this->authorize('permission-list');
 
-        return view('livewire.permissions.permission-list', [
-            'permissions' => $this->permissions()
-        ]);
+        return view('livewire.permissions.permission-list');
     }
 }
