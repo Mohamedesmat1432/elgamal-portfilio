@@ -4,8 +4,7 @@ use App\Livewire\Actions\Logout;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Volt\Component;
 
-new class extends Component
-{
+new class extends Component {
     public string $password = '';
 
     /**
@@ -30,14 +29,13 @@ new class extends Component
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-            {{ __('trans.info_for_delete_account') }}        
+            {{ __('trans.info_for_delete_account') }}
         </p>
     </header>
 
-    <x-danger-button
-        x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-    >{{ __('trans.delete_account') }}</x-danger-button>
+    <x-danger-button x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">
+        {{ __('trans.delete_account') }}
+    </x-danger-button>
 
     <x-modal name="confirm-user-deletion" :show="$errors->isNotEmpty()" focusable>
         <form wire:submit="deleteUser" class="p-6">
@@ -53,26 +51,20 @@ new class extends Component
             <div class="mt-6">
                 <x-input-label for="password" value="{{ __('trans.password') }}" class="sr-only" />
 
-                <x-text-input
-                    wire:model="password"
-                    id="password"
-                    name="password"
-                    type="password"
-                    class="mt-1 block w-3/4"
-                    placeholder="{{ __('trans.password') }}"
-                />
+                <x-text-input wire:model="password" id="password" name="password" type="password"
+                    class="mt-1 block w-full" placeholder="{{ __('trans.password') }}" />
 
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
             </div>
 
-            <div class="mt-6 flex justify-end">
-                <x-secondary-button x-on:click="$dispatch('close')">
-                    {{ __('trans.cancel') }}
-                </x-secondary-button>
-
-                <x-danger-button class="ms-3">
+            <div class="mt-6 flex ltr:justify-start rtl:justify-end">
+                <x-danger-button>
                     {{ __('trans.delete_account') }}
                 </x-danger-button>
+
+                <x-secondary-button class="ms-3" x-on:click="$dispatch('close')">
+                    {{ __('trans.cancel') }}
+                </x-secondary-button>
             </div>
         </form>
     </x-modal>

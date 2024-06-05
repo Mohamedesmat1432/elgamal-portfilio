@@ -3,22 +3,21 @@
 namespace App\Livewire\Forms;
 
 use App\Models\Permission;
-use App\Traits\WithModal;
-use App\Traits\WithNotify;
 use Livewire\Form;
 
 class PermissionForm extends Form
 {
-    use WithNotify, WithModal;
-
     public ?Permission $permission;
 
+    public ?string $id = '';
     public ?string $name = '';
+    public ?array $ids = [];
+    public ?bool $selected_all = false;
 
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'unique:permissions,name,' . $this->permission->id]
+            'name' => ['required', 'string', 'unique:permissions,name,' . $this->id],
         ];
     }
 
@@ -28,4 +27,28 @@ class PermissionForm extends Form
         Permission::create($validated);
     }
 
+    public function setPermission($id)
+    {
+        $this->permission = Permission::findOrFail($id);
+        $this->id = $this->permission->id;
+        $this->name = $this->permission->name;
+    }
+
+    public function update()
+    {
+        $validated = $this->validate();
+        $this->permission->update($validated);
+    }
+
+    public function destroy($id)
+    {
+        $permission = Permission::findOrFail($id);
+        $permission->delete();
+    }
+
+    public function destroyAll($ids)
+    {
+        $permissions = Permission::whereIn('id', $ids);
+        $permissions->delete();
+    }
 }

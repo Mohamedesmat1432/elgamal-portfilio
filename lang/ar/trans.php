@@ -80,4 +80,8 @@ return [
     'message_delete_permission' => 'تم حذف الأذن بنجاح',
     'message_bulk_delete_permission' => 'تم حذف الأذونات بنجاح',
     'empty_data' => 'لا يوجد بيانات',
+    'showing' => 'عرض',
+    'to' => 'من',
+    'of' => 'الي',
+    'results' => 'النتائج',
 ];
