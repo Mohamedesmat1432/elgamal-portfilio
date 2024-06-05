@@ -29,7 +29,7 @@ class PermissionForm extends Form
 
     public function setPermission($id)
     {
-        $this->permission = Permission::findOrFail($id);
+        $this->permission = Permission::withoutTrashed()->findOrFail($id);
         $this->id = $this->permission->id;
         $this->name = $this->permission->name;
     }
@@ -42,13 +42,13 @@ class PermissionForm extends Form
 
     public function destroy($id)
     {
-        $permission = Permission::findOrFail($id);
+        $permission = Permission::withoutTrashed()->findOrFail($id);
         $permission->delete();
     }
 
     public function destroyAll($ids)
     {
-        $permissions = Permission::whereIn('id', $ids);
+        $permissions = Permission::withoutTrashed()->whereIn('id', $ids);
         $permissions->delete();
     }
 }
