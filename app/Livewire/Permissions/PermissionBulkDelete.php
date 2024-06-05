@@ -16,8 +16,8 @@ class PermissionBulkDelete extends Component
     #[On('bulk-delete-modal')]
     public function bulkDeleteModal($ids)
     {
-        $this->form->ids = json_decode($ids);
         $this->dispatch('open-modal', 'bulk-delete-permission-modal');
+        $this->form->ids = json_decode($ids);
     }
 
     public function bulkDelete()

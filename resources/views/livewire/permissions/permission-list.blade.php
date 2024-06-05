@@ -28,7 +28,7 @@
         <x-slot name="thead">
             <tr>
                 <th class="px-6 py-4">
-                    <x-text-input type="checkbox" wire:model="form.selected_all" />
+                    <x-text-input type="checkbox" wire:model="form.selected_all" wire:click="selectAll"/>
                 </th>
                 <th class="px-6 py-4">
                     <button wire:click="sortBy('id')" class="flex justify-center w-full">
