@@ -9,10 +9,10 @@ class PermissionForm extends Form
 {
     public ?Permission $permission;
 
+    public ?bool $selected_all = false;
+    public ?array $ids = [];
     public ?string $id = '';
     public ?string $name = '';
-    public ?array $ids = [];
-    public ?bool $selected_all = false;
 
     public function rules()
     {
