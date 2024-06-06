@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Livewire\Form;
 
+use function Livewire\Volt\rules;
+
 class UserForm extends Form
 {
     public ?User $user;
@@ -24,15 +26,20 @@ class UserForm extends Form
 
     public function rules()
     {
-        return [
+        $rules = [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email,'. $this->id],
-            'password' => ['required', 'string', 'confirmed', Password::defaults()],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email,' . $this->id],
             'role' => ['required', 'array'],
         ];
+
+        if (!$this->id) {
+            $rules['password'] = ['required', 'string', 'confirmed', Password::defaults()];
+        }
+
+        return $rules;
     }
 
-    public  function roles()
+    public function roles()
     {
         return Role::withoutTrashed()->pluck('name')->toArray();
     }

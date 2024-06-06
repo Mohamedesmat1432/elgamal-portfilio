@@ -1,7 +1,7 @@
 <div>
     <aside x-data="{ show: false }">
         <!-- Background -->
-        <div x-show="show" class="fixed inset-0 transform transition-all" x-on:click="show = false"
+        <div x-show="show" class="fixed inset-0 transform transition-all z-40" x-on:click="show = false"
             x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
             x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200"
             x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
@@ -23,7 +23,7 @@
             <!-- Sidebar header -->
             <div class="inline-block py-2 mb-2">
                 <h1 class=" text-black transition-opacity duration-300 font-bold text-2xl" x-show="show" x-cloak>
-                    Elgamal
+                    {{ auth()->user()->name ?? '' }}
                 </h1>
                 <p class="text-black transition-opacity duration-300 font-medium text-md" x-show=" show" x-cloak>
                     {{ auth()->user()->email ?? '' }}
@@ -31,46 +31,18 @@
             </div>
             <!-- Sidebar menu -->
             <ul class="flex flex-col space-y-2 overflow-y-auto overflow-x-hidden scrollbar">
-                <li x-show="show || !show" class="group">
-                    <x-sidebar-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
-                        <!-- Icon -->
-                        <x-icon class="w-5 h-5" name="home" />
-                        <!-- Text -->
-                        <span x-show="show" x-cloak>{{ __('trans.dashboard') }}</span>
+                @foreach ($this->links() as $link)
+                    <li x-show="show || !show" class="group">
+                        <x-sidebar-link :href="route($link['name'])" :active="request()->routeIs($link['name'])" wire:navigate>
+                            <!-- Icon -->
+                            <x-icon class="w-5 h-5" name="{{ $link['icon'] }}" />
+                            <!-- Text -->
+                            <span x-show="show" x-cloak>{{ $link['trans'] }}</span>
 
-                    </x-sidebar-link>
-                    <hr class="mt-2 border-t border-black" x-show="show" x-cloak />
-                </li>
-                <li x-show="show || !show" class="group">
-                    <x-sidebar-link :href="route('permissions')" :active="request()->routeIs('permissions')" wire:navigate>
-                        <!-- Icon -->
-                        <x-icon class="w-5 h-5" name="lock-open" />
-                        <!-- Text -->
-                        <span x-show="show" x-cloak>{{ __('trans.permissions') }}</span>
-
-                    </x-sidebar-link>
-                    <hr class="mt-2 border-t border-black" x-show="show" x-cloak />
-                </li>
-                <li x-show="show || !show" class="group">
-                    <x-sidebar-link :href="route('roles')" :active="request()->routeIs('roles')" wire:navigate>
-                        <!-- Icon -->
-                        <x-icon class="w-5 h-5" name="shield-exclamation" />
-                        <!-- Text -->
-                        <span x-show="show" x-cloak>{{ __('trans.roles') }}</span>
-
-                    </x-sidebar-link>
-                    <hr class="mt-2 border-t border-black" x-show="show" x-cloak />
-                </li>
-                <li x-show="show || !show" class="group">
-                    <x-sidebar-link :href="route('users')" :active="request()->routeIs('users')" wire:navigate>
-                        <!-- Icon -->
-                        <x-icon class="w-5 h-5" name="user" />
-                        <!-- Text -->
-                        <span x-show="show" x-cloak>{{ __('trans.users') }}</span>
-
-                    </x-sidebar-link>
-                    <hr class="mt-2 border-t border-black" x-show="show" x-cloak />
-                </li>
+                        </x-sidebar-link>
+                        <hr class="mt-2 border-t border-black" x-show="show" x-cloak />
+                    </li>
+                @endforeach
             </ul>
             <!-- Sidebar Footer -->
             <div class="mt-auto bg-mint-green-400 rounded-lg shadow-sm" x-show="show || !show" x-cloak>

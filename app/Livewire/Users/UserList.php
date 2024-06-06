@@ -6,10 +6,12 @@ use App\Livewire\Forms\UserForm;
 use App\Models\User;
 use App\Traits\WithSortable;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+#[Layout('layouts.app')]
 class UserList extends Component
 {
     use WithSortable, WithPagination;
@@ -21,7 +23,7 @@ class UserList extends Component
         return view('livewire.users.user-list');
     }
 
-    #[Computed(), On('refresh-user-list')]
+    #[Computed, On('refresh-user-list')]
     public function users()
     {
         // $this->authorize('user-list');

@@ -27,6 +27,7 @@ class RoleList extends Component
     public function roles()
     {
         // $this->authorize('role-list');
+
         return Role::withoutTrashed()
             ->search($this->search)
             ->orderBy($this->sort_by, $this->sortDir())
