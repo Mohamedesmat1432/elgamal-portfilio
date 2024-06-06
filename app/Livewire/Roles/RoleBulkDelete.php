@@ -33,6 +33,4 @@ class RoleBulkDelete extends Component
         $this->dispatch('close-modal', 'bulk-delete-role-modal');
         $this->successNotify(__('trans.message_bulk_delete_role'));
     }
-
-
 }
