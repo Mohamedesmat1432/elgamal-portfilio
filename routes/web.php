@@ -8,7 +8,8 @@ use App\Http\Controllers\Pages\{
     DashboardController,
     PermissionController,
     ProfileController,
-    RoleController
+    RoleController,
+    UserController
 };
 
 
@@ -28,6 +29,7 @@ Route::group([
             Route::get('dashboard', DashboardController::class)->name('dashboard');
             Route::get('permissions', PermissionController::class)->name('permissions');
             Route::get('roles', RoleController::class)->name('roles');
+            Route::get('users', UserController::class)->name('users');
             Route::get('profile', ProfileController::class)->name('profile');
         });
 

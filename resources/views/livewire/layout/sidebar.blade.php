@@ -54,9 +54,19 @@
                 <li x-show="show || !show" class="group">
                     <x-sidebar-link :href="route('roles')" :active="request()->routeIs('roles')" wire:navigate>
                         <!-- Icon -->
-                        <x-icon class="w-5 h-5" name="lock-open" />
+                        <x-icon class="w-5 h-5" name="shield-exclamation" />
                         <!-- Text -->
                         <span x-show="show" x-cloak>{{ __('trans.roles') }}</span>
+
+                    </x-sidebar-link>
+                    <hr class="mt-2 border-t border-black" x-show="show" x-cloak />
+                </li>
+                <li x-show="show || !show" class="group">
+                    <x-sidebar-link :href="route('users')" :active="request()->routeIs('users')" wire:navigate>
+                        <!-- Icon -->
+                        <x-icon class="w-5 h-5" name="user" />
+                        <!-- Text -->
+                        <span x-show="show" x-cloak>{{ __('trans.users') }}</span>
 
                     </x-sidebar-link>
                     <hr class="mt-2 border-t border-black" x-show="show" x-cloak />

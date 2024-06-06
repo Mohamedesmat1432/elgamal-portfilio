@@ -8,6 +8,7 @@ return [
     'register' => 'مستخدم جديد',
     'forget_password' => 'نسيت كلمة المرور',
     'reset_password' => 'اعادة تعين كلمة المرور',
+    'password_confirmation' => 'تأكيد كلمة المرور',
     'create' => 'انشاء',
     'show' => 'عرض',
     'edit' => 'تعديل',

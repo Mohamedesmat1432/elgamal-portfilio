@@ -10,8 +10,9 @@ class RoleForm extends Form
 {
     public ?Role $role;
 
-    public ?bool $select_all = false;
     public ?array $ids = [];
+    public ?bool $select_all = false;
+
     public ?string $id = '';
     public ?string $name = '';
     public ?array $permission = [];

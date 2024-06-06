@@ -8,6 +8,7 @@ return [
     'register' => 'Register',
     'forget_password' => 'Forget Password',
     'reset_password' => 'Reset Password',
+    'password_confirmation' => 'Confirm Password',
     'create' => 'Create',
     'show' => 'Show',
     'edit' => 'Edit',

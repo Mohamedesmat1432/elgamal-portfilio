@@ -16,9 +16,6 @@
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                             {{ __('trans.dashboard') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('permissions')" :active="request()->routeIs('permissions')" wire:navigate>
-                            {{ __('trans.permissions') }}
-                        </x-nav-link>
                     </div>
                 </div>
 
