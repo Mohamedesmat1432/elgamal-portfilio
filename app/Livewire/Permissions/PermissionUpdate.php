@@ -13,6 +13,11 @@ class PermissionUpdate extends Component
 
     public PermissionForm $form;
 
+    public function render()
+    {
+        return view('livewire.permissions.permission-update');
+    }
+
     #[On('edit-modal')]
     public function editModal($id)
     {
@@ -27,10 +32,5 @@ class PermissionUpdate extends Component
         $this->dispatch('refresh-permission-list');
         $this->dispatch('close-modal', 'update-permission-modal');
         $this->successNotify(__('trans.message_update_permission'));
-    }
-
-    public function render()
-    {
-        return view('livewire.permissions.permission-update');
     }
 }

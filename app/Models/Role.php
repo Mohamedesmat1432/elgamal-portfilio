@@ -9,7 +9,7 @@ class Role extends SpatieRole
 {
     use SoftDeletes;
 
-    protected $guard_name = 'web';
+    public $guard_name = 'web';
 
     public function scopeSearch($query, $search)
     {

@@ -7,7 +7,8 @@ use App\Http\Controllers\Pages\{
     HomeController,
     DashboardController,
     PermissionController,
-    ProfileController
+    ProfileController,
+    RoleController
 };
 
 
@@ -21,12 +22,13 @@ Route::group([
             return Route::post('/livewire/update', $handle);
         });
 
-        Route::get('/', [HomeController::class, 'index'])->name('home');
+        Route::get('/', HomeController::class)->name('home');
 
         Route::group(['middleware' => ['auth', 'verified']], function() {
-            Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-            Route::get('permissions', [PermissionController::class, 'index'])->name('permissions');
-            Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+            Route::get('dashboard', DashboardController::class)->name('dashboard');
+            Route::get('permissions', PermissionController::class)->name('permissions');
+            Route::get('roles', RoleController::class)->name('roles');
+            Route::get('profile', ProfileController::class)->name('profile');
         });
 
         require __DIR__.'/auth.php';

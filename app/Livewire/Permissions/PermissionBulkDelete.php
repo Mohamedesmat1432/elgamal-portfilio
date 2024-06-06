@@ -13,6 +13,11 @@ class PermissionBulkDelete extends Component
 
     public PermissionForm $form;
 
+    public function render()
+    {
+        return view('livewire.permissions.permission-bulk-delete');
+    }
+
     #[On('bulk-delete-modal')]
     public function bulkDeleteModal($ids)
     {
@@ -27,10 +32,5 @@ class PermissionBulkDelete extends Component
         $this->dispatch('refresh-permission-list');
         $this->dispatch('close-modal', 'bulk-delete-permission-modal');
         $this->successNotify(__('trans.message_bulk_delete_permission'));
-    }
-
-    public function render()
-    {
-        return view('livewire.permissions.permission-bulk-delete');
     }
 }

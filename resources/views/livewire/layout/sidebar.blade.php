@@ -51,6 +51,16 @@
                     </x-sidebar-link>
                     <hr class="mt-2 border-t border-black" x-show="show" x-cloak />
                 </li>
+                <li x-show="show || !show" class="group">
+                    <x-sidebar-link :href="route('roles')" :active="request()->routeIs('roles')" wire:navigate>
+                        <!-- Icon -->
+                        <x-icon class="w-5 h-5" name="lock-open" />
+                        <!-- Text -->
+                        <span x-show="show" x-cloak>{{ __('trans.roles') }}</span>
+
+                    </x-sidebar-link>
+                    <hr class="mt-2 border-t border-black" x-show="show" x-cloak />
+                </li>
             </ul>
             <!-- Sidebar Footer -->
             <div class="mt-auto bg-mint-green-400 rounded-lg shadow-sm" x-show="show || !show" x-cloak>
