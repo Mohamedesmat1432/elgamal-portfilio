@@ -24,12 +24,12 @@ class UserForm extends Form
 
     public function rules()
     {
-        $pass_rule = $this->id ? 'sometimes|string' : 'required|string|confirmed|' . Password::defaults();
+        $pass_rule = $this->id ? ['sometimes', 'string'] : ['required', 'string', 'confirmed', Password::defaults()];
 
         return [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|lowercase|email|max:255|unique:users,email,' . $this->id,
-            'role' => 'required|array',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email,' . $this->id],
+            'role' => ['sometimes', 'array'],
             'password' => $pass_rule,
         ];
     }
@@ -67,9 +67,6 @@ class UserForm extends Form
     public function update()
     {
         $validated = $this->validate();
-        if($this->password){
-            $validated['password'] = Hash::make($validated['password']);
-        }
         $this->user->update($validated);
         $this->user->syncRoles($this->role);
         $this->refresh();

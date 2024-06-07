@@ -20,12 +20,12 @@ class RoleForm extends Form
     public function rules()
     {
         return [
-            'name' => 'required|string|unique:roles,name,' . $this->id,
-            'permission' => 'required|array',
+            'name' => ['required', 'string', 'unique:roles,name,' . $this->id],
+            'permission' => ['sometimes', 'array'],
         ];
     }
 
-    public  function permissions()
+    public function permissions()
     {
         return Permission::withoutTrashed()->pluck('name')->toArray();
     }

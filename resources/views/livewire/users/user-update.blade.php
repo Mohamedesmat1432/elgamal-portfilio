@@ -25,15 +25,6 @@
             </div>
 
             <div class="mt-6">
-                <x-input-label for="password" value="{{ __('trans.password') }}" class="sr-only" />
-
-                <x-text-input wire:model="form.password" id="password" name="form.password" type="password"
-                    class="mt-1 block w-full" placeholder="{{ __('trans.password') }}" />
-
-                <x-input-error :messages="$errors->get('form.password')" class="mt-2" />
-            </div>
-
-            <div class="mt-6">
                 <x-input-label for="role" value="{{ __('trans.role') }}" class="sr-only" />
 
                 <x-select wire:model="form.role" id="role" name="form.role" multiple>

@@ -28,7 +28,6 @@ class UserList extends Component
     #[Computed, On('refresh-user-list')]
     public function users()
     {
-        // $this->authorize('user-list');
         return User::withoutTrashed()
             ->search($this->search)
             ->orderBy($this->sort_by, $this->sortDir())

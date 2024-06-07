@@ -32,16 +32,18 @@
             <!-- Sidebar menu -->
             <ul class="flex flex-col space-y-2 overflow-y-auto overflow-x-hidden scrollbar">
                 @foreach ($this->links() as $link)
-                    <li x-show="show || !show" class="group">
-                        <x-sidebar-link :href="route($link['name'])" :active="request()->routeIs($link['name'])" wire:navigate>
-                            <!-- Icon -->
-                            <x-icon class="w-5 h-5" name="{{ $link['icon'] }}" />
-                            <!-- Text -->
-                            <span x-show="show" x-cloak>{{ $link['trans'] }}</span>
+                    @can($link['permission'])
+                        <li x-show="show || !show" class="group">
+                            <x-sidebar-link :href="route($link['name'])" :active="request()->routeIs($link['name'])" wire:navigate>
+                                <!-- Icon -->
+                                <x-icon class="w-5 h-5" name="{{ $link['icon'] }}" />
+                                <!-- Text -->
+                                <span x-show="show" x-cloak>{{ $link['trans'] }}</span>
 
-                        </x-sidebar-link>
-                        <hr class="mt-2 border-t border-black" x-show="show" x-cloak />
-                    </li>
+                            </x-sidebar-link>
+                            <hr class="mt-2 border-t border-black" x-show="show" x-cloak />
+                        </li>
+                    @endcan
                 @endforeach
             </ul>
             <!-- Sidebar Footer -->

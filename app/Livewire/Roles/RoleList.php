@@ -28,8 +28,6 @@ class RoleList extends Component
     #[Computed(), On('refresh-role-list')]
     public function roles()
     {
-        // $this->authorize('role-list');
-
         return Role::withoutTrashed()
             ->search($this->search)
             ->orderBy($this->sort_by, $this->sortDir())

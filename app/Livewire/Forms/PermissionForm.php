@@ -18,7 +18,7 @@ class PermissionForm extends Form
     public function rules()
     {
         return [
-            'name' => 'required|string|unique:permissions,name,' . $this->id,
+            'name' => ['required', 'string', 'unique:permissions,name,' . $this->id],
         ];
     }
 
