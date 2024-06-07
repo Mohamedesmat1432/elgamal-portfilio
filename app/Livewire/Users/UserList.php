@@ -20,6 +20,8 @@ class UserList extends Component
 
     public function render()
     {
+        $this->authorize('user-list');
+
         return view('livewire.users.user-list');
     }
 

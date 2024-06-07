@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Livewire\Form;
 
-use function Livewire\Volt\rules;
-
 class UserForm extends Form
 {
     public ?User $user;
@@ -26,17 +24,14 @@ class UserForm extends Form
 
     public function rules()
     {
-        $rules = [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email,' . $this->id],
-            'role' => ['required', 'array'],
+        $pass_rule = $this->id ? 'sometimes|string' : 'required|string|confirmed|' . Password::defaults();
+
+        return [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|lowercase|email|max:255|unique:users,email,' . $this->id,
+            'role' => 'required|array',
+            'password' => $pass_rule,
         ];
-
-        if (!$this->id) {
-            $rules['password'] = ['required', 'string', 'confirmed', Password::defaults()];
-        }
-
-        return $rules;
     }
 
     public function roles()
@@ -72,6 +67,9 @@ class UserForm extends Form
     public function update()
     {
         $validated = $this->validate();
+        if($this->password){
+            $validated['password'] = Hash::make($validated['password']);
+        }
         $this->user->update($validated);
         $this->user->syncRoles($this->role);
         $this->refresh();
@@ -84,14 +82,9 @@ class UserForm extends Form
         $this->refresh();
     }
 
-    public function selectAll($model_data)
+    public function selectAll($model)
     {
-        if ($this->select_all) {
-            $this->select_all = true;
-            $this->ids = $model_data->pluck('id')->toArray();
-        } else {
-            $this->refresh();
-        }
+        $this->select_all ? ($this->ids = $model->pluck('id')->toArray()) : $this->refresh();
     }
 
     public function destroyAll($ids)

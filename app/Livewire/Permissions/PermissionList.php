@@ -20,13 +20,14 @@ class PermissionList extends Component
 
     public function render()
     {
+        $this->authorize('permission-list');
+        
         return view('livewire.permissions.permission-list');
     }
 
     #[Computed, On('refresh-permission-list')]
     public function permissions()
     {
-        // $this->authorize('permission-list');
         return Permission::withoutTrashed()
             ->search($this->search)
             ->orderBy($this->sort_by, $this->sortDir())

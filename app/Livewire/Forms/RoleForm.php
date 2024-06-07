@@ -20,8 +20,8 @@ class RoleForm extends Form
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'unique:roles,name,' . $this->id],
-            'permission' => ['required', 'array'],
+            'name' => 'required|string|unique:roles,name,' . $this->id,
+            'permission' => 'required|array',
         ];
     }
 
@@ -68,14 +68,9 @@ class RoleForm extends Form
         $this->refresh();
     }
 
-    public function selectAll($model_data)
+    public function selectAll($model)
     {
-        if ($this->select_all) {
-            $this->select_all = true;
-            $this->ids = $model_data->pluck('id')->toArray();
-        } else {
-            $this->refresh();
-        }
+        $this->select_all ? ($this->ids = $model->pluck('id')->toArray()) : $this->refresh();
     }
 
     public function destroyAll($ids)

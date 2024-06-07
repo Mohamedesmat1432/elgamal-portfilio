@@ -20,6 +20,8 @@ class RoleList extends Component
 
     public function render()
     {
+        $this->authorize('role-list');
+
         return view('livewire.roles.role-list');
     }
 

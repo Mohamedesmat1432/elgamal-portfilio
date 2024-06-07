@@ -1,33 +1,53 @@
 <div>
-    <livewire:users.user-create />
-    <livewire:users.user-update />
-    <livewire:users.user-delete />
-    <livewire:users.user-bulk-delete />
+    @can('user-create')
+        <livewire:users.user-create />
+    @endcan
+
+    @can('user-update')
+        <livewire:users.user-update />
+    @endcan
+
+    @can('user-delete')
+        <livewire:users.user-delete />
+    @endcan
+
+    @can('user-bulk-delete')
+        <livewire:users.user-bulk-delete />
+    @endcan
 
     <div class="p-6 my-3 flex-1">
-        <x-text-input type="search" wire:model.live.debounce.500ms="search"
-                placeholder="{{ __('trans.search') }}..." />
+        <x-text-input type="search" wire:model.live.debounce.500ms="search" placeholder="{{ __('trans.search') }}..." />
 
+        @can('user-create')
             <x-primary-button x-on:click.prevent="$dispatch('create-modal')">
                 {{ __('trans.create') }}
             </x-primary-button>
+        @else
+            <x-primary-button class="cursor-not-allowed bg-gray-500">
+                {{ __('trans.create') }}
+            </x-primary-button>
+        @endcan
 
+        @can('user-bulk-delete')
             @if (count($this->form->ids) > 0)
                 <x-danger-button class="mt-2"
                     x-on:click.prevent="$dispatch('bulk-delete-modal', {ids: '{{ json_encode($this->form->ids) }}'})">
                     {{ __('trans.delete_all') }} {{ count($this->form->ids) }}
                 </x-danger-button>
             @endif
+        @endcan
     </div>
 
     <x-table>
         {{-- thead --}}
         <x-slot name="thead">
             <tr>
-                <th class="px-6 py-4">
-                    <x-text-input class="cursor-pointer" type="checkbox" wire:model="form.select_all"
-                        wire:click="selectAll" />
-                </th>
+                @can('user-bulk-delete')
+                    <th class="px-6 py-4">
+                        <x-text-input class="cursor-pointer" type="checkbox" wire:model="form.select_all"
+                            wire:click="selectAll" />
+                    </th>
+                @endcan
                 <th class="px-6 py-4">
                     <button wire:click="sortBy('id')" class="flex justify-center w-full">
                         #
@@ -56,10 +76,12 @@
         <x-slot name="tbody">
             @forelse ($this->users as $user)
                 <tr wire:key="user-{{ $user->id }}" class="border-b border-neutral-200">
-                    <td class="px-6 py-4">
-                        <x-text-input class="cursor-pointer" type="checkbox" wire:model.live="form.ids"
-                            value="{{ $user->id }}" />
-                    </td>
+                    @can('user-bulk-delete')
+                        <td class="px-6 py-4">
+                            <x-text-input class="cursor-pointer" type="checkbox" wire:model.live="form.ids"
+                                value="{{ $user->id }}" />
+                        </td>
+                    @endcan
                     <td class="px-6 py-4 font-medium">
                         {{ $user->id }}
                     </td>
@@ -70,11 +92,19 @@
                         {{ $user->email }}
                     </td>
                     <td class="px-6 py-4">
-                        <x-icon name="pencil-square" class="w-10 h-10 inline-block cursor-pointer"
-                            x-on:click.prevent="$dispatch('edit-modal', {id: '{{ $user->id }}'})" />
+                        @can('user-update')
+                            <x-icon name="pencil-square" class="w-10 h-10 inline-block cursor-pointer"
+                                x-on:click.prevent="$dispatch('edit-modal', {id: '{{ $user->id }}'})" />
+                        @else
+                            <x-icon name="pencil-square" class="w-10 h-10 text-gray-500 inline-block cursor-not-allowed" />
+                        @endcan
 
-                        <x-icon name="trash" class="w-10 h-10 text-red-600 inline-block cursor-pointer"
-                            x-on:click.prevent="$dispatch('delete-modal', {id: '{{ $user->id }}', name: '{{ $user->name }}'})" />
+                        @can('user-delete')
+                            <x-icon name="trash" class="w-10 h-10 text-red-600 inline-block cursor-pointer"
+                                x-on:click.prevent="$dispatch('delete-modal', {id: '{{ $user->id }}', name: '{{ $user->name }}'})" />
+                        @else
+                            <x-icon name="trash" class="w-10 h-10 text-red-300 inline-block cursor-not-allowed" />
+                        @endcan
                     </td>
                 </tr>
             @empty

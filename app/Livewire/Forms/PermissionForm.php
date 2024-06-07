@@ -18,7 +18,7 @@ class PermissionForm extends Form
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'unique:permissions,name,' . $this->id],
+            'name' => 'required|string|unique:permissions,name,' . $this->id,
         ];
     }
 
@@ -57,14 +57,9 @@ class PermissionForm extends Form
         $this->refresh();
     }
 
-    public function selectAll($model_data)
+    public function selectAll($model)
     {
-        if ($this->select_all) {
-            $this->select_all = true;
-            $this->ids = $model_data->pluck('id')->toArray();
-        } else {
-            $this->refresh();
-        }
+        $this->select_all ? ($this->ids = $model->pluck('id')->toArray()) : $this->refresh();
     }
 
     public function destroyAll($ids)
