@@ -4,18 +4,17 @@ namespace App\Livewire\Forms;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Traits\HelperTrait;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Livewire\Form;
 
 class UserForm extends Form
 {
+    use HelperTrait;
+
     public ?User $user;
-
-    public ?array $ids = [];
-    public ?bool $select_all = false;
-
-    public ?string $id = '';
+    public ?int $id = null;
     public ?string $name = '';
     public ?string $email = '';
     public ?string $password = '';
@@ -37,12 +36,6 @@ class UserForm extends Form
     public function roles()
     {
         return Role::withoutTrashed()->pluck('name')->toArray();
-    }
-
-    public function refresh()
-    {
-        $this->reset();
-        $this->resetValidation();
     }
 
     public function store()
@@ -77,11 +70,6 @@ class UserForm extends Form
         $user = User::withoutTrashed()->findOrFail($id);
         $user->delete();
         $this->refresh();
-    }
-
-    public function selectAll($model)
-    {
-        $this->select_all ? ($this->ids = $model->pluck('id')->toArray()) : $this->refresh();
     }
 
     public function destroyAll($ids)

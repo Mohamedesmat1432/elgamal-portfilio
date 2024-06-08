@@ -3,13 +3,13 @@
 namespace App\Livewire\Users;
 
 use App\Livewire\Forms\UserForm;
-use App\Traits\WithNotify;
+use App\Traits\NotifyTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 class UserBulkDelete extends Component
 {
-    use WithNotify;
+    use NotifyTrait;
 
     public UserForm $form;
 

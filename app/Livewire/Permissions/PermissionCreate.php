@@ -3,13 +3,13 @@
 namespace App\Livewire\Permissions;
 
 use App\Livewire\Forms\PermissionForm;
-use App\Traits\WithNotify;
+use App\Traits\NotifyTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 class PermissionCreate extends Component
 {
-    use WithNotify;
+    use NotifyTrait;
 
     public PermissionForm $form;
 

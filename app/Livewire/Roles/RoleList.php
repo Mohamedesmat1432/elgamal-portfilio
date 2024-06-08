@@ -4,7 +4,7 @@ namespace App\Livewire\Roles;
 
 use App\Livewire\Forms\RoleForm;
 use App\Models\Role;
-use App\Traits\WithSortable;
+use App\Traits\SortableTrait;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
@@ -14,7 +14,7 @@ use Livewire\WithPagination;
 #[Layout('layouts.app')]
 class RoleList extends Component
 {
-    use WithSortable, WithPagination;
+    use SortableTrait, WithPagination;
 
     public RoleForm $form;
 

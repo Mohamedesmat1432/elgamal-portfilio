@@ -3,13 +3,13 @@
 namespace App\Livewire\Roles;
 
 use App\Livewire\Forms\RoleForm;
-use App\Traits\WithNotify;
+use App\Traits\NotifyTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 class RoleBulkDelete extends Component
 {
-    use WithNotify;
+    use NotifyTrait;
 
     public RoleForm $form;
 

@@ -4,7 +4,7 @@ namespace App\Livewire\Users;
 
 use App\Livewire\Forms\UserForm;
 use App\Models\User;
-use App\Traits\WithSortable;
+use App\Traits\SortableTrait;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
@@ -14,7 +14,7 @@ use Livewire\WithPagination;
 #[Layout('layouts.app')]
 class UserList extends Component
 {
-    use WithSortable, WithPagination;
+    use SortableTrait, WithPagination;
 
     public UserForm $form;
 

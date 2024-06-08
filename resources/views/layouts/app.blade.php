@@ -22,11 +22,11 @@
 <body class="font-sans antialiased">
 
     <!-- Sidebar -->
-    <livewire:layout.sidebar />
+    <livewire:partials.sidebar />
 
     <div class="min-h-screen bg-gray-100 ltr:ml-12 rtl:mr-12">
         <!-- Navigatation -->
-        <livewire:layout.navigation />
+        <livewire:partials.navigation />
 
         <!-- Page Heading -->
         @if (isset($header))

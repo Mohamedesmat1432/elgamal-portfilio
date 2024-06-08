@@ -4,7 +4,7 @@ namespace App\Traits;
 
 use Livewire\Attributes\Url;
 
-trait WithSortable
+trait SortableTrait
 {
     #[Url('')]
     public ?string $search = '';

@@ -31,7 +31,7 @@
             </div>
             <!-- Sidebar menu -->
             <ul class="flex flex-col space-y-2 overflow-y-auto overflow-x-hidden scrollbar">
-                @foreach ($this->links() as $link)
+                @foreach ($this->sidebarLinks() as $link)
                     @can($link['permission'])
                         <li x-show="show || !show" class="group">
                             <x-sidebar-link :href="route($link['name'])" :active="request()->routeIs($link['name'])" wire:navigate>

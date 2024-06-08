@@ -4,16 +4,15 @@ namespace App\Livewire\Forms;
 
 use App\Models\Permission;
 use App\Models\Role;
+use App\Traits\HelperTrait;
 use Livewire\Form;
 
 class RoleForm extends Form
 {
+    use HelperTrait;
+
     public ?Role $role;
-
-    public ?array $ids = [];
-    public ?bool $select_all = false;
-
-    public ?string $id = '';
+    public ?int $id = null;
     public ?string $name = '';
     public ?array $permission = [];
 
@@ -28,12 +27,6 @@ class RoleForm extends Form
     public function permissions()
     {
         return Permission::withoutTrashed()->pluck('name')->toArray();
-    }
-
-    public function refresh()
-    {
-        $this->reset();
-        $this->resetValidation();
     }
 
     public function store()
@@ -66,11 +59,6 @@ class RoleForm extends Form
         $role = Role::withoutTrashed()->findOrFail($id);
         $role->delete();
         $this->refresh();
-    }
-
-    public function selectAll($model)
-    {
-        $this->select_all ? ($this->ids = $model->pluck('id')->toArray()) : $this->refresh();
     }
 
     public function destroyAll($ids)

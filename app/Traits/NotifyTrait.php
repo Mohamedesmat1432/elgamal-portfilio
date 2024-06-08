@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-trait WithNotify
+trait NotifyTrait
 {
     public function successNotify($message, $style = 'success')
     {

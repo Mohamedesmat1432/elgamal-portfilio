@@ -3,16 +3,15 @@
 namespace App\Livewire\Forms;
 
 use App\Models\Permission;
+use App\Traits\HelperTrait;
 use Livewire\Form;
 
 class PermissionForm extends Form
 {
+    use HelperTrait;
+
     public ?Permission $permission;
-
-    public ?array $ids = [];
-    public ?bool $select_all = false;
-
-    public ?string $id = '';
+    public ?int $id = null;
     public ?string $name = '';
 
     public function rules()
@@ -20,12 +19,6 @@ class PermissionForm extends Form
         return [
             'name' => ['required', 'string', 'unique:permissions,name,' . $this->id],
         ];
-    }
-
-    public function refresh()
-    {
-        $this->reset();
-        $this->resetValidation();
     }
 
     public function store()
@@ -55,11 +48,6 @@ class PermissionForm extends Form
         $permission = Permission::withoutTrashed()->findOrFail($id);
         $permission->delete();
         $this->refresh();
-    }
-
-    public function selectAll($model)
-    {
-        $this->select_all ? ($this->ids = $model->pluck('id')->toArray()) : $this->refresh();
     }
 
     public function destroyAll($ids)

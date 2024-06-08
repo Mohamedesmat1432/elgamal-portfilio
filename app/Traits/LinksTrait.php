@@ -1,20 +1,17 @@
 <?php
 
-namespace App\Livewire\Layout;
-
+namespace App\Traits;
 use App\Livewire\Actions\Logout;
-use Livewire\Attributes\Computed;
-use Livewire\Component;
 
-class Sidebar extends Component
+trait LinksTrait
 {
-    public function render()
+    public function logout(Logout $logout)
     {
-        return view('livewire.layout.sidebar');
-    }
+        $logout();
+        $this->redirect('/', navigate: true);
+    }  
 
-    #[Computed()]
-    public function links()
+    public function sidebarLinks()
     {
         return [
             [
@@ -43,10 +40,4 @@ class Sidebar extends Component
             ],
         ];
     }
-
-    public function logout(Logout $logout)
-    {
-        $logout();
-        $this->redirect('/', navigate: true);
-    }  
 }
