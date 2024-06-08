@@ -33,5 +33,6 @@ class RoleDelete extends Component
         $this->dispatch('refresh-role-list');
         $this->dispatch('close-modal', 'delete-role-modal');
         $this->successNotify(__('trans.message_delete_role'));
+        $this->dispatch('refresh-partials');
     }
 }

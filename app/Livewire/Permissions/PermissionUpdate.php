@@ -32,5 +32,6 @@ class PermissionUpdate extends Component
         $this->dispatch('refresh-permission-list');
         $this->dispatch('close-modal', 'update-permission-modal');
         $this->successNotify(__('trans.message_update_permission'));
+        $this->dispatch('refresh-partials');
     }
 }

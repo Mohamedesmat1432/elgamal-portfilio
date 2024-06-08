@@ -34,5 +34,6 @@ class RoleCreate extends Component
         $this->dispatch('refresh-role-list');
         $this->dispatch('close-modal', 'create-role-modal');
         $this->successNotify(__('trans.message_create_role'));
+        $this->dispatch('refresh-partials');
     }
 }

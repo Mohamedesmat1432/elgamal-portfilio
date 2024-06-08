@@ -32,5 +32,6 @@ class UserBulkDelete extends Component
         $this->dispatch('refresh-user-list');
         $this->dispatch('close-modal', 'bulk-delete-user-modal');
         $this->successNotify(__('trans.message_bulk_delete_user'));
+        $this->dispatch('refresh-partials');
     }
 }

@@ -38,7 +38,7 @@
                                 <!-- Icon -->
                                 <x-icon class="w-5 h-5" name="{{ $link['icon'] }}" />
                                 <!-- Text -->
-                                <span x-show="show" x-cloak>{{ $link['trans'] }}</span>
+                                <span x-show="show" x-cloak>{{ $link['trans'] . ' ' . $link['count'] }}</span>
 
                             </x-sidebar-link>
                             <hr class="mt-2 border-t border-black" x-show="show" x-cloak />

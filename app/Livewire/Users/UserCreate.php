@@ -34,5 +34,6 @@ class UserCreate extends Component
         $this->dispatch('refresh-user-list');
         $this->dispatch('close-modal', 'create-user-modal');
         $this->successNotify(__('trans.message_create_user'));
+        $this->dispatch('refresh-partials');
     }
 }

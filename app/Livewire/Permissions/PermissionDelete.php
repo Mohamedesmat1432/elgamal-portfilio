@@ -33,5 +33,6 @@ class PermissionDelete extends Component
         $this->dispatch('refresh-permission-list');
         $this->dispatch('close-modal', 'delete-permission-modal');
         $this->successNotify(__('trans.message_delete_permission'));
+        $this->dispatch('refresh-partials');
     }
 }

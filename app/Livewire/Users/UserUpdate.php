@@ -34,5 +34,6 @@ class UserUpdate extends Component
         $this->dispatch('refresh-user-list');
         $this->dispatch('close-modal', 'update-user-modal');
         $this->successNotify(__('trans.message_update_user'));
+        $this->dispatch('refresh-partials');
     }
 }

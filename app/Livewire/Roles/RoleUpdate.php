@@ -34,5 +34,6 @@ class RoleUpdate extends Component
         $this->dispatch('refresh-role-list');
         $this->dispatch('close-modal', 'update-role-modal');
         $this->successNotify(__('trans.message_update_role'));
+        $this->dispatch('refresh-partials');
     }
 }

@@ -32,5 +32,6 @@ class PermissionCreate extends Component
         $this->dispatch('refresh-permission-list');
         $this->dispatch('close-modal', 'create-permission-modal');
         $this->successNotify(__('trans.message_create_permission'));
+        $this->dispatch('refresh-partials');
     }
 }

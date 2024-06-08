@@ -33,5 +33,6 @@ class UserDelete extends Component
         $this->dispatch('refresh-user-list');
         $this->dispatch('close-modal', 'delete-user-modal');
         $this->successNotify(__('trans.message_delete_user'));
+        $this->dispatch('refresh-partials');
     }
 }
