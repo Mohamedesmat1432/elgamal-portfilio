@@ -20,7 +20,7 @@ class RoleForm extends Form
     {
         return [
             'name' => ['required', 'string', 'unique:roles,name,' . $this->id],
-            'permission' => ['sometimes', 'array'],
+            'permission' => ['sometimes', 'array', 'exists:permissions,name'],
         ];
     }
 

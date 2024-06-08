@@ -28,7 +28,7 @@ class UserForm extends Form
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email,' . $this->id],
-            'role' => ['sometimes', 'array'],
+            'role' => ['sometimes', 'array', 'exists:roles,name'],
             'password' => $pass_rule,
         ];
     }
