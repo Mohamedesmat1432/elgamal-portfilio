@@ -5,7 +5,6 @@ namespace App\Traits;
 trait HelperTrait
 {
     public ?array $ids = [];
-
     public ?bool $select_all = false;
 
     public function refresh()
