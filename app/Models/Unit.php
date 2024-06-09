@@ -5,25 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends Model
+class Unit extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'categories';
+    protected $table = 'units';
 
-    protected $fillable = ['name', 'slug'];
+    protected $fillable = ['name', 'qty'];
 
-    public function subcategories(): HasMany
+    public function products(): HasMany
     {
-        return $this->hasMany(Subcategory::class);
-    }
-
-    public function products(): HasManyThrough
-    {
-        return $this->hasManyThrough(Product::class, Subcategory::class);
+        return $this->hasMany(Product::class);
     }
 
     public function scopeSearch($query, $search)
