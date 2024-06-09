@@ -21,8 +21,8 @@ class UserDelete extends Component
     #[On('delete-modal')]
     public function deleteModal($id, $name)
     {
-        $this->dispatch('refresh-user-list');
         $this->dispatch('open-modal', 'delete-user-modal');
+        $this->dispatch('reset-user');
         $this->form->id = $id;
         $this->form->name = $name;
     }

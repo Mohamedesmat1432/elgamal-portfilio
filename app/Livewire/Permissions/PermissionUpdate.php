@@ -21,8 +21,8 @@ class PermissionUpdate extends Component
     #[On('edit-modal')]
     public function editModal($id)
     {
-        $this->dispatch('refresh-permission-list');
         $this->dispatch('open-modal', 'update-permission-modal');
+        $this->dispatch('reset-permission');
         $this->form->setPermission($id);
     }
 

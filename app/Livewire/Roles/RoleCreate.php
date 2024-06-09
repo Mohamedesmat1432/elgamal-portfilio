@@ -23,9 +23,9 @@ class RoleCreate extends Component
     #[On('create-modal')]
     public function createModal()
     {
-        $this->form->refresh();
-        $this->dispatch('refresh-role-list');
         $this->dispatch('open-modal', 'create-role-modal');
+        $this->dispatch('reset-role');
+        $this->form->refresh();
     }
 
     public function create()

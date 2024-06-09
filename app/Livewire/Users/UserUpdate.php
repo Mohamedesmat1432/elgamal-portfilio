@@ -23,8 +23,8 @@ class UserUpdate extends Component
     #[On('edit-modal')]
     public function editModal($id)
     {
-        $this->dispatch('refresh-user-list');
         $this->dispatch('open-modal', 'update-user-modal');
+        $this->dispatch('reset-user');
         $this->form->setUser($id);
     }
 

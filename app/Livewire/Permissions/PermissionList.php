@@ -34,7 +34,7 @@ class PermissionList extends Component
             ->paginate($this->page_count);
     }
 
-    #[On('refresh-permission-list')]
+    #[On('reset-permission')]
     public function refreshBulkButton()
     {
         $this->form->refresh();

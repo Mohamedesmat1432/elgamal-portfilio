@@ -29,8 +29,8 @@ class PermissionBulkDelete extends Component
     public function bulkDelete()
     {
         $this->form->deleteAll($this->form->ids);
-        $this->dispatch('refresh-permission-list');
         $this->dispatch('close-modal', 'bulk-delete-permission-modal');
+        $this->dispatch('refresh-permission-list');
         $this->successNotify(__('trans.message_bulk_delete_permission'));
         $this->dispatch('refresh-partials');
     }

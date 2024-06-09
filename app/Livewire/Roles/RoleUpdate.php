@@ -15,7 +15,7 @@ class RoleUpdate extends Component
 
     public function render()
     {
-        return view('livewire.roles.role-update',[
+        return view('livewire.roles.role-update', [
             'permissions' => $this->form->permissions(),
         ]);
     }
@@ -23,8 +23,8 @@ class RoleUpdate extends Component
     #[On('edit-modal')]
     public function editModal($id)
     {
-        $this->dispatch('refresh-role-list');
         $this->dispatch('open-modal', 'update-role-modal');
+        $this->dispatch('reset-role');
         $this->form->setRole($id);
     }
 

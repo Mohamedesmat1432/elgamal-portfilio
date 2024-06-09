@@ -21,9 +21,9 @@ class PermissionCreate extends Component
     #[On('create-modal')]
     public function createModal()
     {
-        $this->form->refresh();
-        $this->dispatch('refresh-permission-list');
         $this->dispatch('open-modal', 'create-permission-modal');
+        $this->dispatch('reset-permission');
+        $this->form->refresh();
     }
 
     public function create()

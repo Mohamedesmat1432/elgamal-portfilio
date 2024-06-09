@@ -21,8 +21,8 @@ class RoleDelete extends Component
     #[On('delete-modal')]
     public function deleteModal($id, $name)
     {
-        $this->dispatch('refresh-role-list');
         $this->dispatch('open-modal', 'delete-role-modal');
+        $this->dispatch('reset-role');
         $this->form->id = $id;
         $this->form->name = $name;
     }

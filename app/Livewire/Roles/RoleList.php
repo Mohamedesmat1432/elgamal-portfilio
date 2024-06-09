@@ -34,7 +34,7 @@ class RoleList extends Component
             ->paginate($this->page_count);
     }
 
-    #[On('refresh-role-list')]
+    #[On('reset-role')]
     public function refreshBulkButton()
     {
         $this->form->refresh();
