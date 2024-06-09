@@ -1,18 +1,18 @@
 <div>
     <aside x-data="{ show: false }">
-        <!-- Background -->
+        <!-- Background Light -->
         <div x-show="show" class="fixed inset-0 transform transition-all z-40" x-on:click="show = false"
             x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
             x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200"
             x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
-            <div class="absolute inset-0 bg-gray-500 opacity-75 z-40"></div>
+            <div class="absolute inset-0 bg-gray-400 opacity-75 z-40"></div>
         </div>
 
-        <div class="fixed bg-gray-700 min-h-screen transition-all duration-300 flex flex-col text-md font-semibold z-50"
+        <div class="fixed bg-gray-900 min-h-screen transition-all duration-300 flex flex-col text-md font-semibold z-50"
             :class="show ? 'w-80 p-5' : 'w-12'" x-on:click.outside="show = false" x-cloak>
             <!-- Toggle button -->
             <button x-on:click="show = !show"
-                class="absolute ltr:-right-3 rtl:-left-3 top-20 mt-1.5 cursor-pointer rounded-full border-2 border-black bg-white p-1">
+                class="absolute ltr:-right-3 rtl:-left-3 top-20 mt-1.5 cursor-pointer rounded-full border-1 border-black bg-white p-1">
                 <!-- SVG icon -->
                 <svg :class="show ? 'rotate-270' : 'rotate-90'"
                     class="h-4 w-4 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24"
@@ -22,13 +22,15 @@
             </button>
             <!-- Sidebar header -->
             <div class="inline-block py-2 mb-2">
-                <h1 class=" text-black transition-opacity duration-300 font-bold text-2xl" x-show="show" x-cloak>
+                <h1 class="text-white transition-opacity duration-300 font-bold text-2xl" x-show="show" x-cloak>
                     {{ auth()->user()->name ?? '' }}
                 </h1>
-                <p class="text-black transition-opacity duration-300 font-medium text-md" x-show=" show" x-cloak>
+                <p class="text-white transition-opacity duration-300 font-medium text-md" x-show=" show" x-cloak>
                     {{ auth()->user()->email ?? '' }}
                 </p>
             </div>
+
+            <hr class="my-2 border-t border-black" x-show="show" x-cloak />
 
             <div class="my-5" x-show="!show"></div>
 
@@ -41,9 +43,11 @@
                                 <!-- Icon -->
                                 <x-icon class="w-5 h-5" name="{{ $link['icon'] }}" />
                                 <!-- Text -->
-                                <span x-show="show" x-cloak>{{ $link['trans'] . ' ' . $link['count'] }}</span>
-
+                                <span x-show="show" x-cloak>
+                                    {{ $link['trans'] . ' ' . $link['count'] }}
+                                </span>
                             </x-sidebar-link>
+
                             <hr class="mt-2 border-t border-black" x-show="show" x-cloak />
                         </li>
                     @endcan
@@ -54,8 +58,9 @@
                         <!-- Icon -->
                         <x-icon name="language" />
                         <!-- Text -->
-                        <span x-show="show" x-cloak>{{ __('trans.lang') }}</span>
-
+                        <span x-show="show" x-cloak>
+                            {{ __('trans.lang') }}
+                        </span>
                     </x-sidebar-link>
 
                     <hr class="my-2 border-t border-black" x-show="show" x-cloak />
@@ -71,9 +76,11 @@
                                         <x-icon-en />
                                     @endif
                                     <!-- Text -->
-                                    <span x-show="show" x-cloak>{{ $properties['native'] }}</span>
-
+                                    <span x-show="show" x-cloak>
+                                        {{ $properties['native'] }}
+                                    </span>
                                 </x-sidebar-link>
+
                                 <hr class="mt-2 border-t border-black" x-show="show" x-cloak />
                             </li>
                         @endforeach
@@ -89,7 +96,9 @@
                     <!-- Icon -->
                     <x-icon name="arrow-left-start-on-rectangle" class="w-5 h-5 text-2xl" />
                     <!-- Text -->
-                    <span x-show="show" x-cloak>{{ __('trans.logout') }}</span>
+                    <span x-show="show" x-cloak>
+                        {{ __('trans.logout') }}
+                    </span>
                 </x-sidebar-link>
             </div>
 
