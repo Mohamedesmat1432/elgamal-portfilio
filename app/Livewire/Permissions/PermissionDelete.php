@@ -10,7 +10,6 @@ use Livewire\Component;
 class PermissionDelete extends Component
 {
     use NotifyTrait;
-
     public PermissionForm $form;
 
     public function render()
@@ -22,7 +21,7 @@ class PermissionDelete extends Component
     public function deleteModal($id, $name)
     {
         $this->dispatch('open-modal', 'delete-permission-modal');
-        $this->dispatch('reset-permission');
+        $this->dispatch('refresh-permission-list');
         $this->form->id = $id;
         $this->form->name = $name;
     }

@@ -10,7 +10,7 @@
             <div class="mt-6">
                 <x-input-label for="name" value="{{ __('trans.name') }}" class="sr-only" />
 
-                <x-text-input wire:model="form.name" id="name" name="name" type="text"
+                <x-text-input wire:model="form.name" id="permission_name" name="name" type="text"
                     class="mt-1 block w-full" placeholder="{{ __('trans.name') }}" />
 
                 <x-input-error :messages="$errors->get('form.name')" class="mt-2" />

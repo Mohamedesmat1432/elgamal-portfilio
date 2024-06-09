@@ -24,7 +24,7 @@ class UserCreate extends Component
     public function createModal()
     {
         $this->dispatch('open-modal', 'create-user-modal');
-        $this->dispatch('reset-user');
+        $this->dispatch('refresh-user-list');
         $this->form->refresh();
     }
 

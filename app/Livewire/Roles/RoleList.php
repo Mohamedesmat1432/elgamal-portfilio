@@ -15,7 +15,6 @@ use Livewire\WithPagination;
 class RoleList extends Component
 {
     use SortableTrait, WithPagination;
-
     public RoleForm $form;
 
     public function render()
@@ -34,7 +33,7 @@ class RoleList extends Component
             ->paginate($this->page_count);
     }
 
-    #[On('reset-role')]
+    #[On('refresh-role-list')]
     public function refreshBulkButton()
     {
         $this->form->refresh();

@@ -10,7 +10,6 @@ use Livewire\Component;
 class PermissionBulkDelete extends Component
 {
     use NotifyTrait;
-
     public PermissionForm $form;
 
     public function render()

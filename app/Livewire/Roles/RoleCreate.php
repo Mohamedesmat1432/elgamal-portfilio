@@ -10,7 +10,6 @@ use Livewire\Component;
 class RoleCreate extends Component
 {
     use NotifyTrait;
-
     public RoleForm $form;
 
     public function render()
@@ -24,7 +23,7 @@ class RoleCreate extends Component
     public function createModal()
     {
         $this->dispatch('open-modal', 'create-role-modal');
-        $this->dispatch('reset-role');
+        $this->dispatch('refresh-role-list');
         $this->form->refresh();
     }
 

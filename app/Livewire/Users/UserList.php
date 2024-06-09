@@ -34,7 +34,7 @@ class UserList extends Component
             ->paginate($this->page_count);
     }
 
-    #[On('reset-user')]
+    #[On('refresh-user-list')]
     public function refreshBulkButton()
     {
         $this->form->refresh();

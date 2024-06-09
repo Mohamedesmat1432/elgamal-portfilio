@@ -10,7 +10,6 @@ use Livewire\Component;
 class RoleBulkDelete extends Component
 {
     use NotifyTrait;
-
     public RoleForm $form;
 
     public function render()

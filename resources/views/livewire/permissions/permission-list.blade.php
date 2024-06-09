@@ -19,7 +19,7 @@
         <x-text-input type="search" wire:model.live.debounce.500ms="search" placeholder="{{ __('trans.search') }}..." />
 
         <div class="mt-2">
-            @can('role-create')
+            @can('permission-create')
                 <x-primary-button x-on:click.prevent="$dispatch('create-modal')">
                     <x-icon name="plus" class="w-4 h-4 text-white inline-block" />
                     {{ __('trans.create') }}
@@ -31,7 +31,7 @@
                 </x-primary-button>
             @endcan
 
-            @can('role-bulk-delete')
+            @can('permission-bulk-delete')
                 @if (count($this->form->ids) > 0)
                     <x-danger-button
                         x-on:click.prevent="$dispatch('bulk-delete-modal', {ids: '{{ json_encode($this->form->ids) }}'})">
@@ -72,7 +72,7 @@
         </x-slot>
         {{-- tbody --}}
         <x-slot name="tbody">
-            @forelse ($this->permissions as $permission)
+            @forelse ($this->permissions() as $permission)
                 <tr wire:key="permission-{{ $permission->id }}" class="border-b border-neutral-200">
                     @can('permission-bulk-delete')
                         <td class="px-6 py-4">
@@ -114,6 +114,6 @@
 
     {{-- pagination --}}
     <div class="p-6 min-w-full">
-        {{ $this->permissions->withQueryString()->links() }}
+        {{ $this->permissions()->withQueryString()->links() }}
     </div>
 </div>

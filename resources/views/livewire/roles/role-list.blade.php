@@ -72,7 +72,7 @@
         </x-slot>
         {{-- tbody --}}
         <x-slot name="tbody">
-            @forelse ($this->roles as $role)
+            @forelse ($this->roles() as $role)
                 <tr wire:key="role-{{ $role->id }}" class="border-b border-neutral-200">
                     @can('role-bulk-delete')
                         <td class="px-6 py-4">
@@ -114,6 +114,6 @@
 
     {{-- pagination --}}
     <div class="p-6 min-w-full">
-        {{ $this->roles->withQueryString()->links() }}
+        {{ $this->roles()->withQueryString()->links() }}
     </div>
 </div>

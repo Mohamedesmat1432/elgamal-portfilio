@@ -22,7 +22,7 @@ class UserDelete extends Component
     public function deleteModal($id, $name)
     {
         $this->dispatch('open-modal', 'delete-user-modal');
-        $this->dispatch('reset-user');
+        $this->dispatch('refresh-user-list');
         $this->form->id = $id;
         $this->form->name = $name;
     }

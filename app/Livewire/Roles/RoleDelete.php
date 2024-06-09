@@ -10,7 +10,6 @@ use Livewire\Component;
 class RoleDelete extends Component
 {
     use NotifyTrait;
-
     public RoleForm $form;
 
     public function render()
@@ -22,7 +21,7 @@ class RoleDelete extends Component
     public function deleteModal($id, $name)
     {
         $this->dispatch('open-modal', 'delete-role-modal');
-        $this->dispatch('reset-role');
+        $this->dispatch('refresh-role-list');
         $this->form->id = $id;
         $this->form->name = $name;
     }

@@ -10,7 +10,6 @@ use Livewire\Component;
 class PermissionCreate extends Component
 {
     use NotifyTrait;
-
     public PermissionForm $form;
 
     public function render()
@@ -22,7 +21,7 @@ class PermissionCreate extends Component
     public function createModal()
     {
         $this->dispatch('open-modal', 'create-permission-modal');
-        $this->dispatch('reset-permission');
+        $this->dispatch('refresh-permission-list');
         $this->form->refresh();
     }
 

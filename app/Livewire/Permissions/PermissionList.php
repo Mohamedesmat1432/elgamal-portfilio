@@ -15,7 +15,6 @@ use Livewire\WithPagination;
 class PermissionList extends Component
 {
     use SortableTrait, WithPagination;
-
     public PermissionForm $form;
 
     public function render()
@@ -34,7 +33,7 @@ class PermissionList extends Component
             ->paginate($this->page_count);
     }
 
-    #[On('reset-permission')]
+    #[On('refresh-permission-list')]
     public function refreshBulkButton()
     {
         $this->form->refresh();
