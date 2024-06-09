@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Livewire\Forms\Auth;
+namespace App\Livewire\Forms;
 
-use App\Models\User;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
+use App\Models\User;
 use Livewire\Form;
 
 class RegisterForm extends Form

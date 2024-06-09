@@ -2,11 +2,11 @@
 
 namespace App\Livewire\Forms;
 
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Hash;
+use App\Traits\HelperTrait;
 use App\Models\Role;
 use App\Models\User;
-use App\Traits\HelperTrait;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules\Password;
 use Livewire\Form;
 
 class UserForm extends Form
@@ -42,7 +42,7 @@ class UserForm extends Form
     {
         $validated = $this->validate();
         $validated['password'] = Hash::make($validated['password']);
-        $user = User::withoutTrashed()->create($validated);
+        $user = User::create($validated);
         $user->syncRoles($this->role);
         $this->refresh();
     }

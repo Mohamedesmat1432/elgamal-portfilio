@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Auth;
 
-use App\Livewire\Forms\Auth\ResetPasswordForm;
+use App\Livewire\Forms\ResetPasswordForm;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 

@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Auth;
 
-use App\Livewire\Forms\Auth\ConfirmPasswordForm;
+use App\Livewire\Forms\ConfirmPasswordForm;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 

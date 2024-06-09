@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Livewire\Forms\Auth;
+namespace App\Livewire\Forms;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Form;
 
 class ConfirmPasswordForm extends Form

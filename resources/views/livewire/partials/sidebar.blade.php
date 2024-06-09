@@ -55,7 +55,7 @@
 
                     </x-sidebar-link>
                     <hr class="mt-2 border-t border-black" x-show="show" x-cloak />
-                    <ul x-show="lang">
+                    <ul class="flex flex-col space-y-2 overflow-y-auto overflow-x-hidden scrollbar" x-show="lang">
                         @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                             <li x-show="show || !show" class="group">
                                 <x-sidebar-link :href="LaravelLocalization::getLocalizedURL($localeCode, null, [], true)" :active="$localeCode === LaravelLocalization::getCurrentLocale()">

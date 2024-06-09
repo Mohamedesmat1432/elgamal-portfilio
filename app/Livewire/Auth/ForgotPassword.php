@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Auth;
 
-use App\Livewire\Forms\Auth\ForgetPasswordForm;
+use App\Livewire\Forms\ForgetPasswordForm;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 

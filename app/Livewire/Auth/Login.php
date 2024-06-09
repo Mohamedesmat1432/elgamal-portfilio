@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Auth;
 
-use Livewire\Component;
-use App\Livewire\Forms\Auth\LoginForm;
 use Illuminate\Support\Facades\Session;
+use App\Livewire\Forms\LoginForm;
 use Livewire\Attributes\Layout;
+use Livewire\Component;
 
 #[Layout('layouts.guest')]
 class Login extends Component

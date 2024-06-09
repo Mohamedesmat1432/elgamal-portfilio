@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Forms\Auth;
+namespace App\Livewire\Forms;
 
 use Illuminate\Support\Facades\Password;
 use Livewire\Form;

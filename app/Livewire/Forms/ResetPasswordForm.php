@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Livewire\Forms\Auth;
+namespace App\Livewire\Forms;
 
 use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
-use Illuminate\Validation\Rules;
-use Livewire\Attributes\Locked
-;use Livewire\Form;
+use Livewire\Attributes\Locked;
+use Livewire\Form;
 
 class ResetPasswordForm extends Form
 {

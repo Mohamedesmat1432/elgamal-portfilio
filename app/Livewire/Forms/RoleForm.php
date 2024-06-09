@@ -2,9 +2,9 @@
 
 namespace App\Livewire\Forms;
 
+use App\Traits\HelperTrait;
 use App\Models\Permission;
 use App\Models\Role;
-use App\Traits\HelperTrait;
 use Livewire\Form;
 
 class RoleForm extends Form
@@ -32,7 +32,7 @@ class RoleForm extends Form
     public function store()
     {
         $validated = $this->validate();
-        $role = Role::withoutTrashed()->create($validated);
+        $role = Role::create($validated);
         $role->syncPermissions($this->permission);
         $this->refresh();
     }

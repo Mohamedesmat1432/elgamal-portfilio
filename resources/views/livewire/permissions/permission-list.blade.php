@@ -15,27 +15,32 @@
         <livewire:permissions.permission-bulk-delete />
     @endcan
 
-    <div class="p-6 my-3 flex-1">
+    <div class="p-6 my-2">
         <x-text-input type="search" wire:model.live.debounce.500ms="search" placeholder="{{ __('trans.search') }}..." />
 
-        @can('permission-create')
-            <x-primary-button x-on:click.prevent="$dispatch('create-modal')">
-                {{ __('trans.create') }}
-            </x-primary-button>
-        @else
-            <x-primary-button class="cursor-not-allowed bg-gray-500">
-                {{ __('trans.create') }}
-            </x-primary-button>
-        @endcan
+        <div class="mt-2">
+            @can('role-create')
+                <x-primary-button x-on:click.prevent="$dispatch('create-modal')">
+                    <x-icon name="plus" class="w-4 h-4 text-white inline-block" />
+                    {{ __('trans.create') }}
+                </x-primary-button>
+            @else
+                <x-primary-button class="cursor-not-allowed bg-gray-500">
+                    <x-icon name="plus" class="w-4 h-4 text-white inline-block" />
+                    {{ __('trans.create') }}
+                </x-primary-button>
+            @endcan
 
-        @can('permission-bulk-delete')
-            @if (count($this->form->ids) > 0)
-                <x-danger-button class="mt-2"
-                    x-on:click.prevent="$dispatch('bulk-delete-modal', {ids: '{{ json_encode($this->form->ids) }}'})">
-                    {{ __('trans.delete_all') }} {{ count($this->form->ids) }}
-                </x-danger-button>
-            @endif
-        @endcan
+            @can('role-bulk-delete')
+                @if (count($this->form->ids) > 0)
+                    <x-danger-button
+                        x-on:click.prevent="$dispatch('bulk-delete-modal', {ids: '{{ json_encode($this->form->ids) }}'})">
+                        <x-icon name="trash" class="w-4 h-4 text-white inline-block" />
+                        <span>{{ __('trans.delete_all') }} {{ count($this->form->ids) }}</span>
+                    </x-danger-button>
+                @endif
+            @endcan
+        </div>
     </div>
 
     <x-table>

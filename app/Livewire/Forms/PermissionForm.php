@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Forms;
 
-use App\Models\Permission;
 use App\Traits\HelperTrait;
+use App\Models\Permission;
 use Livewire\Form;
 
 class PermissionForm extends Form
@@ -24,7 +24,7 @@ class PermissionForm extends Form
     public function store()
     {
         $validated = $this->validate();
-        Permission::withoutTrashed()->create($validated);
+        Permission::create($validated);
         $this->refresh();
     }
 

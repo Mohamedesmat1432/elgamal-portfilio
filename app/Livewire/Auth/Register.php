@@ -2,9 +2,9 @@
 
 namespace App\Livewire\Auth;
 
-use Livewire\Component;
+use App\Livewire\Forms\RegisterForm;
 use Livewire\Attributes\Layout;
-use App\Livewire\Forms\Auth\RegisterForm;
+use Livewire\Component;
 
 #[Layout('layouts.guest')]
 class Register extends Component
