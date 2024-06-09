@@ -29,7 +29,7 @@ class PermissionDelete extends Component
 
     public function delete()
     {
-        $this->form->destroy($this->form->id);
+        $this->form->delete($this->form->id);
         $this->dispatch('refresh-permission-list');
         $this->dispatch('close-modal', 'delete-permission-modal');
         $this->successNotify(__('trans.message_delete_permission'));

@@ -43,17 +43,45 @@ class PermissionForm extends Form
         $this->refresh();
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
         $permission = Permission::withoutTrashed()->findOrFail($id);
         $permission->delete();
         $this->refresh();
     }
 
-    public function destroyAll($ids)
+    public function deleteAll($ids)
     {
         $permissions = Permission::withoutTrashed()->whereIn('id', $ids);
         $permissions->delete();
+        $this->refresh();
+    }
+
+    public function restore($id)
+    {
+        $permission = Permission::onlyTrashed()->findOrFail($id);
+        $permission->restore();
+        $this->refresh();
+    }
+
+    public function restoreAll($ids)
+    {
+        $permissions = Permission::onlyTrashed()->whereIn('id', $ids);
+        $permissions->restore();
+        $this->refresh();
+    }
+
+    public function forceDelete($id)
+    {
+        $permission = Permission::onlyTrashed()->findOrFail($id);
+        $permission->forceDelete();
+        $this->refresh();
+    }
+
+    public function forceDeleteAll($ids)
+    {
+        $permissions = Permission::onlyTrashed()->whereIn('id', $ids);
+        $permissions->forceDelete();
         $this->refresh();
     }
 }

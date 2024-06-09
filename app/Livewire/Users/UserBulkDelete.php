@@ -28,7 +28,7 @@ class UserBulkDelete extends Component
 
     public function bulkDelete()
     {
-        $this->form->destroyAll($this->form->ids);
+        $this->form->deleteAll($this->form->ids);
         $this->dispatch('refresh-user-list');
         $this->dispatch('close-modal', 'bulk-delete-user-modal');
         $this->successNotify(__('trans.message_bulk_delete_user'));

@@ -28,7 +28,7 @@ class RoleBulkDelete extends Component
 
     public function bulkDelete()
     {
-        $this->form->destroyAll($this->form->ids);
+        $this->form->deleteAll($this->form->ids);
         $this->dispatch('refresh-role-list');
         $this->dispatch('close-modal', 'bulk-delete-role-modal');
         $this->successNotify(__('trans.message_bulk_delete_role'));

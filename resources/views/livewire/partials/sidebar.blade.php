@@ -29,6 +29,9 @@
                     {{ auth()->user()->email ?? '' }}
                 </p>
             </div>
+
+            <div class="my-5" x-show="!show"></div>
+
             <!-- Sidebar menu -->
             <ul class="flex flex-col space-y-2 overflow-y-auto overflow-x-hidden scrollbar">
                 @foreach ($this->sidebarLinks() as $link)
@@ -47,14 +50,16 @@
                 @endforeach
 
                 <li x-data="{ lang: false }" x-on:click="lang = !lang" x-show="show || !show" class="group">
-                    <x-sidebar-link class="cursor-pointer">
+                    <x-sidebar-link class="cursor-pointer mb-2">
                         <!-- Icon -->
                         <x-icon name="language" />
                         <!-- Text -->
                         <span x-show="show" x-cloak>{{ __('trans.lang') }}</span>
 
                     </x-sidebar-link>
-                    <hr class="mt-2 border-t border-black" x-show="show" x-cloak />
+
+                    <hr class="my-2 border-t border-black" x-show="show" x-cloak />
+
                     <ul class="flex flex-col space-y-2 overflow-y-auto overflow-x-hidden scrollbar" x-show="lang">
                         @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                             <li x-show="show || !show" class="group">
@@ -65,7 +70,6 @@
                                     @else
                                         <x-icon-en />
                                     @endif
-
                                     <!-- Text -->
                                     <span x-show="show" x-cloak>{{ $properties['native'] }}</span>
 

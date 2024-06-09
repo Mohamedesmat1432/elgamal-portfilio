@@ -29,7 +29,7 @@ class RoleDelete extends Component
 
     public function delete()
     {
-        $this->form->destroy($this->form->id);
+        $this->form->delete($this->form->id);
         $this->dispatch('refresh-role-list');
         $this->dispatch('close-modal', 'delete-role-modal');
         $this->successNotify(__('trans.message_delete_role'));

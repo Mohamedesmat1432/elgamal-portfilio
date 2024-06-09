@@ -54,17 +54,45 @@ class RoleForm extends Form
         $this->refresh();
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
         $role = Role::withoutTrashed()->findOrFail($id);
         $role->delete();
         $this->refresh();
     }
 
-    public function destroyAll($ids)
+    public function deleteAll($ids)
     {
         $roles = Role::withoutTrashed()->whereIn('id', $ids);
         $roles->delete();
+        $this->refresh();
+    }
+
+    public function restore($id)
+    {
+        $role = Role::onlyTrashed()->findOrFail($id);
+        $role->restore();
+        $this->refresh();
+    }
+
+    public function restoreAll($ids)
+    {
+        $roles = Role::onlyTrashed()->whereIn('id', $ids);
+        $roles->restore();
+        $this->refresh();
+    }
+
+    public function forceDelete($id)
+    {
+        $role = Role::onlyTrashed()->findOrFail($id);
+        $role->forceDelete();
+        $this->refresh();
+    }
+
+    public function forceDeleteAll($ids)
+    {
+        $roles = Role::onlyTrashed()->whereIn('id', $ids);
+        $roles->forceDelete();
         $this->refresh();
     }
 }

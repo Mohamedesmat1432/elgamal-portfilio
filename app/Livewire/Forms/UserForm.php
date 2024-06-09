@@ -65,17 +65,45 @@ class UserForm extends Form
         $this->refresh();
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
         $user = User::withoutTrashed()->findOrFail($id);
         $user->delete();
         $this->refresh();
     }
 
-    public function destroyAll($ids)
+    public function deleteAll($ids)
     {
         $users = User::withoutTrashed()->whereIn('id', $ids);
         $users->delete();
+        $this->refresh();
+    }
+
+    public function restore($id)
+    {
+        $user = User::onlyTrashed()->findOrFail($id);
+        $user->restore();
+        $this->refresh();
+    }
+
+    public function restoreAll($ids)
+    {
+        $users = User::onlyTrashed()->whereIn('id', $ids);
+        $users->restore();
+        $this->refresh();
+    }
+
+    public function forceDelete($id)
+    {
+        $user = User::onlyTrashed()->findOrFail($id);
+        $user->forceDelete();
+        $this->refresh();
+    }
+
+    public function forceDeleteAll($ids)
+    {
+        $users = User::onlyTrashed()->whereIn('id', $ids);
+        $users->forceDelete();
         $this->refresh();
     }
 }

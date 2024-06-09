@@ -29,7 +29,7 @@ class UserDelete extends Component
 
     public function delete()
     {
-        $this->form->destroy($this->form->id);
+        $this->form->delete($this->form->id);
         $this->dispatch('refresh-user-list');
         $this->dispatch('close-modal', 'delete-user-modal');
         $this->successNotify(__('trans.message_delete_user'));

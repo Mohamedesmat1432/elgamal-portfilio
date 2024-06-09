@@ -9,18 +9,18 @@ Artisan::command('inspire', function () {
 
 Artisan::command('livewire:init {name}', function (string $name) {
     Artisan::call("livewire:form {$name}Form");
-    Artisan::call("make:livewire {$name}.List{$name}");
-    Artisan::call("make:livewire {$name}.Create{$name}");
-    Artisan::call("make:livewire {$name}.Update{$name}");
-    // Artisan::call("make:livewire {$name}.Show{$name}");
-    Artisan::call("make:livewire {$name}.Delete{$name}");
-    Artisan::call("make:livewire {$name}.BulkDelete{$name}");
-    // Artisan::call("make:livewire {$name}.ImportExport{$name}");
-    // Artisan::call("make:import {$name}sImport --model={$name}");
-    // Artisan::call("make:export {$name}sExport --model={$name}");
-    Artisan::call("make:livewire Trash.{$name}.List{$name}");
-    Artisan::call("make:livewire Trash.{$name}.Restore{$name}");
-    Artisan::call("make:livewire Trash.{$name}.Restore{$name}");
-    Artisan::call("make:livewire Trash.{$name}.ForceDelete{$name}");
-    Artisan::call("make:livewire Trash.{$name}.ForceBulkDelete{$name}");
+    Artisan::call("make:livewire {$name}s.{$name}List");
+    Artisan::call("make:livewire {$name}s.{$name}Create");
+    Artisan::call("make:livewire {$name}s.{$name}Update");
+    // Artisan::call("make:livewire {$name}s.{$name}Show");
+    Artisan::call("make:livewire {$name}s.{$name}Delete");
+    Artisan::call("make:livewire {$name}s.{$name}BulkDelete");
+    // Artisan::call("make:livewire {$name}s.{$name}ImportExport");
+    // Artisan::call("make:import {$name}sImport --model=");
+    // Artisan::call("make:export {$name}sExport --model=");
+    Artisan::call("make:livewire Trash.{$name}s.{$name}List");
+    Artisan::call("make:livewire Trash.{$name}s.{$name}Restore");
+    Artisan::call("make:livewire Trash.{$name}s.{$name}BulkRestore");
+    Artisan::call("make:livewire Trash.{$name}s.{$name}ForceDelete");
+    Artisan::call("make:livewire Trash.{$name}s.{$name}ForceBulkDelete");
 })->description('Running commands');
