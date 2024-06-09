@@ -45,6 +45,36 @@
                         </li>
                     @endcan
                 @endforeach
+
+                <li x-data="{ lang: false }" x-on:click="lang = !lang" x-show="show || !show" class="group">
+                    <x-sidebar-link class="cursor-pointer">
+                        <!-- Icon -->
+                        <x-icon name="language" />
+                        <!-- Text -->
+                        <span x-show="show" x-cloak>{{ __('trans.lang') }}</span>
+
+                    </x-sidebar-link>
+                    <hr class="mt-2 border-t border-black" x-show="show" x-cloak />
+                    <ul x-show="lang">
+                        @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                            <li x-show="show || !show" class="group">
+                                <x-sidebar-link :href="LaravelLocalization::getLocalizedURL($localeCode, null, [], true)" :active="$localeCode === LaravelLocalization::getCurrentLocale()">
+                                    <!-- Icon -->
+                                    @if ($localeCode == 'ar')
+                                        <x-icon-ar />
+                                    @else
+                                        <x-icon-en />
+                                    @endif
+
+                                    <!-- Text -->
+                                    <span x-show="show" x-cloak>{{ $properties['native'] }}</span>
+
+                                </x-sidebar-link>
+                                <hr class="mt-2 border-t border-black" x-show="show" x-cloak />
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
             </ul>
             <!-- Sidebar Footer -->
             <div class="mt-auto bg-mint-green-400 rounded-lg shadow-sm" x-show="show || !show" x-cloak>

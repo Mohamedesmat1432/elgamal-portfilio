@@ -49,6 +49,7 @@ new class extends Component {
     </header>
 
     <form wire:submit="updatePassword" class="mt-6 space-y-6">
+        @csrf
         <div>
             <x-input-label for="update_password_current_password" :value="__('trans.current_password')" />
             <x-text-input wire:model="current_password" id="update_password_current_password" name="current_password"

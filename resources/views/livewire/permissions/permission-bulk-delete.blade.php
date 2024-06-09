@@ -1,7 +1,7 @@
 <div>
     <x-modal name="bulk-delete-permission-modal" :show="$errors->isNotEmpty()" focusable>
         <form wire:submit="bulkDelete" class="p-6">
-            
+            @csrf
             <h2 class="text-2xl font-medium text-gray-900">
                 <x-icon name="exclamation-triangle" class="w-10 h-10 text-red-600 inline-block" />
                 {{ __('trans.delete_all') }}

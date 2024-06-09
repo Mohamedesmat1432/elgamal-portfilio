@@ -16,7 +16,7 @@ use App\Http\Controllers\Pages\{
 
 Route::group([
         'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => ['localize', 'localeCookieRedirect', 'localeSessionRedirect', 'localeViewPath', 'localizationRedirect']
+        'middleware' => ['web', 'localize', 'localeCookieRedirect', 'localeSessionRedirect', 'localeViewPath', 'localizationRedirect']
     ], function() {
 
         Livewire::setUpdateRoute(function ($handle) {

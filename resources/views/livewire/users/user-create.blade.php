@@ -1,7 +1,7 @@
 <div>
     <x-modal name="create-user-modal" :show="$errors->isNotEmpty()" focusable>
         <form wire:submit="create" class="p-6">
-
+            @csrf
             <h2 class="text-2xl font-medium text-gray-900">
                 <x-icon name="plus-circle" class="w-10 h-10 inline-block" />
                 {{ __('trans.create') }}
@@ -10,7 +10,7 @@
             <div class="mt-6">
                 <x-input-label for="name" value="{{ __('trans.name') }}" class="sr-only" />
 
-                <x-text-input wire:model="form.name" id="name" name="form.name" type="text"
+                <x-text-input wire:model="form.name" id="name" name="name" type="text"
                     class="mt-1 block w-full" placeholder="{{ __('trans.name') }}" />
 
                 <x-input-error :messages="$errors->get('form.name')" class="mt-2" />
@@ -19,7 +19,7 @@
             <div class="mt-6">
                 <x-input-label for="email" value="{{ __('trans.email') }}" class="sr-only" />
 
-                <x-text-input wire:model="form.email" id="email" name="form.email" type="email"
+                <x-text-input wire:model="form.email" id="email" name="email" type="email"
                     class="mt-1 block w-full" placeholder="{{ __('trans.email') }}" />
 
                 <x-input-error :messages="$errors->get('form.email')" class="mt-2" />
@@ -28,17 +28,19 @@
             <div class="mt-6">
                 <x-input-label for="password" value="{{ __('trans.password') }}" class="sr-only" />
 
-                <x-text-input wire:model="form.password" id="password" name="form.password" type="password"
+                <x-text-input wire:model="form.password" id="password" name="password" type="password"
                     class="mt-1 block w-full" placeholder="{{ __('trans.password') }}" />
 
                 <x-input-error :messages="$errors->get('form.password')" class="mt-2" />
             </div>
 
             <div class="mt-6">
-                <x-input-label for="password_confirmation" value="{{ __('trans.password_confirmation') }}" class="sr-only" />
+                <x-input-label for="password_confirmation" value="{{ __('trans.password_confirmation') }}"
+                    class="sr-only" />
 
-                <x-text-input wire:model="form.password_confirmation" id="password_confirmation" name="form.password_confirmation" type="password"
-                    class="mt-1 block w-full" placeholder="{{ __('trans.password_confirmation') }}" />
+                <x-text-input wire:model="form.password_confirmation" id="password_confirmation"
+                    name="password_confirmation" type="password" class="mt-1 block w-full"
+                    placeholder="{{ __('trans.password_confirmation') }}" />
 
                 <x-input-error :messages="$errors->get('form.password_confirmation')" class="mt-2" />
             </div>
@@ -46,7 +48,7 @@
             <div class="mt-6">
                 <x-input-label for="role" value="{{ __('trans.role') }}" class="sr-only" />
 
-                <x-select wire:model="form.role" id="role" name="form.role" multiple>
+                <x-select wire:model="form.role" id="role" name="role" multiple>
                     @forelse ($roles as $name)
                         <option value="{{ $name }}">{{ $name }}</option>
                     @empty
