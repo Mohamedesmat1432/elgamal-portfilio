@@ -1,4 +1,8 @@
 <div>
+    <x-slot name="title">
+        {{ __('trans.new_verification_link') }}
+    </x-slot>
+
     <div class="mb-4 text-sm text-gray-600">
         {{ __('trans.thanks_for_signup') }}
     </div>

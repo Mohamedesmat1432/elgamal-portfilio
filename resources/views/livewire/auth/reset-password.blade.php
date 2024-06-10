@@ -1,4 +1,8 @@
 <div>
+    <x-slot name="title">
+        {{ __('trans.reset_password') }}
+    </x-slot>
+
     <form wire:submit="resetPassword">
         @csrf
         <!-- Email Address -->

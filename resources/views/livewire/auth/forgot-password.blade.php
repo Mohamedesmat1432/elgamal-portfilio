@@ -1,4 +1,8 @@
 <div>
+    <x-slot name="title">
+        {{ __('trans.forget_password') }}
+    </x-slot>
+
     <div class="mb-4 text-sm text-gray-600">
         {{ __('trans.forget_password_message') }}
     </div>

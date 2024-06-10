@@ -1,4 +1,8 @@
 <div>
+    <x-slot name="title">
+        {{ __('trans.login') }}
+    </x-slot>
+
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 

@@ -1,4 +1,8 @@
 <div>
+    <x-slot name="title">
+        {{ __('trans.register') }}
+    </x-slot>
+
     <form wire:submit="register">
         @csrf
         <!-- Name -->

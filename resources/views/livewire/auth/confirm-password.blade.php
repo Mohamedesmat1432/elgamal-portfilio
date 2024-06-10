@@ -1,4 +1,8 @@
 <div>
+    <x-slot name="title">
+        {{ __('trans.confirm_password') }}
+    </x-slot>
+
     <div class="mb-4 text-sm text-gray-600">
         {{ __('trans.confirm_password_before_continue') }}
     </div>
