@@ -16,7 +16,8 @@
     @endcan
 
     <div class="p-6 my-2">
-        <x-text-input type="search" wire:model.live.debounce.500ms="search" placeholder="{{ __('trans.search') }}..." />
+        <x-text-input type="search" wire:model.live.debounce.500ms="search" id="roleSearch" name="search"
+            placeholder="{{ __('trans.search') }}..." />
 
         <div class="mt-2">
             @can('role-create')
@@ -50,7 +51,7 @@
                 @can('role-bulk-delete')
                     <th class="px-6 py-4">
                         <x-text-input class="cursor-pointer" type="checkbox" wire:model="form.select_all"
-                            wire:click="selectAll" />
+                            wire:click="selectAll" id="roleSelectAll" name="select_all" />
                     </th>
                 @endcan
                 <th class="px-6 py-4">
@@ -77,7 +78,7 @@
                     @can('role-bulk-delete')
                         <td class="px-6 py-4">
                             <x-text-input class="cursor-pointer" type="checkbox" wire:model.live="form.ids"
-                                value="{{ $role->id }}" />
+                                value="{{ $role->id }}" id="roleIds" name="ids" />
                         </td>
                     @endcan
                     <td class="px-6 py-4 font-medium">

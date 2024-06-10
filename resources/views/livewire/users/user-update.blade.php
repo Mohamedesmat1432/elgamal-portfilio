@@ -10,8 +10,8 @@
             <div class="mt-6">
                 <x-input-label for="name" value="{{ __('trans.name') }}" class="sr-only" />
 
-                <x-text-input wire:model="form.name" id="username" name="name" type="text"
-                    class="mt-1 block w-full" placeholder="{{ __('trans.name') }}" />
+                <x-text-input wire:model="form.name" id="updateUserName" name="name" type="text"
+                    class="mt-1 block w-full" placeholder="{{ __('trans.name') }}" autocomplete="user_name" />
 
                 <x-input-error :messages="$errors->get('form.name')" class="mt-2" />
             </div>
@@ -19,8 +19,8 @@
             <div class="mt-6">
                 <x-input-label for="email" value="{{ __('trans.email') }}" class="sr-only" />
 
-                <x-text-input wire:model="form.email" id="email" name="email" type="email"
-                    class="mt-1 block w-full" placeholder="{{ __('trans.email') }}" />
+                <x-text-input wire:model="form.email" id="updateUserEmail" name="email" type="email"
+                    class="mt-1 block w-full" placeholder="{{ __('trans.email') }}" autocomplete="off" />
 
                 <x-input-error :messages="$errors->get('form.email')" class="mt-2" />
             </div>
@@ -28,7 +28,7 @@
             <div class="mt-6">
                 <x-input-label for="role" value="{{ __('trans.role') }}" class="sr-only" />
 
-                <x-select wire:model="form.role" id="role" name="role" multiple>
+                <x-select wire:model="form.role" id="updateUserRole" name="role" multiple>
                     @forelse ($roles as $name)
                         <option value="{{ $name }}">{{ $name }}</option>
                     @empty

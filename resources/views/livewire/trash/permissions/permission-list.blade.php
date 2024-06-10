@@ -16,7 +16,8 @@
     @endcan
 
     <div class="p-6 my-2">
-        <x-text-input type="search" wire:model.live.debounce.500ms="search" placeholder="{{ __('trans.search') }}..." />
+        <x-text-input type="search" wire:model.live.debounce.500ms="search" placeholder="{{ __('trans.search') }}..."
+            id="permissionSearch" name="search" />
 
         <div class="mt-2">
             @can('permission-bulk-restore')
@@ -48,7 +49,7 @@
                 @can('permission-force-bulk-delete')
                     <th class="px-6 py-4">
                         <x-text-input class="cursor-pointer" type="checkbox" wire:model="form.select_all"
-                            wire:click="selectAll" />
+                            wire:click="selectAll" id="permissionSelectAll" name="select_all" />
                     </th>
                 @endcan
                 <th class="px-6 py-4">
@@ -75,7 +76,7 @@
                     @can('permission-bulk-delete')
                         <td class="px-6 py-4">
                             <x-text-input class="cursor-pointer" type="checkbox" wire:model.live="form.ids"
-                                value="{{ $permission->id }}" />
+                                value="{{ $permission->id }}" id="permissionIds" name="ids" />
                         </td>
                     @endcan
                     <td class="px-6 py-4 font-medium">
@@ -89,7 +90,8 @@
                             <x-icon name="arrow-uturn-left" class="w-10 h-10 inline-block cursor-pointer"
                                 x-on:click.prevent="$dispatch('restore-modal', {id: '{{ $permission->id }}', name: '{{ $permission->name }}'})" />
                         @else
-                            <x-icon name="arrow-uturn-left" class="w-10 h-10 text-gray-500 inline-block cursor-not-allowed" />
+                            <x-icon name="arrow-uturn-left"
+                                class="w-10 h-10 text-gray-500 inline-block cursor-not-allowed" />
                         @endcan
 
                         @can('permission-force-delete')
