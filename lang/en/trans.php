@@ -26,6 +26,7 @@ return [
     'categories' => 'Categories',
     'units' => 'Units',
     'permissions' => 'Permissions',
+    'trash_permissions' => 'Permissions Trashed',
     'name' => 'Name',
     'email' => 'Email',
     'action' => 'Action',

@@ -42,7 +42,7 @@ class UserForm extends Form
     {
         $validated = $this->validate();
         $validated['password'] = Hash::make($validated['password']);
-        $user = User::create($validated);
+        $user = User::withoutTrashed()->create($validated);
         $user->syncRoles($this->role);
         $this->refresh();
     }

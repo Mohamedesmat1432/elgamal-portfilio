@@ -121,10 +121,10 @@
                 </tr>
             @endforelse
         </x-slot>
-        {{-- pagination --}}
     </x-table>
+
+    {{-- pagination --}}
     <div class="p-6 min-w-full">
         {{ $this->users()->withQueryString()->links() }}
     </div>
-
 </div>

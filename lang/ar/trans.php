@@ -26,6 +26,7 @@ return [
     'categories' => 'اﻷقسام',
     'units' => 'الوحدات',
     'permissions' => 'الأذونات',
+    'trash_permissions' => 'الأذونات المحذوفة',
     'name' => 'اﻷسم',
     'email' => 'البريد الالكتروني',
     'action' => 'اﻷحداث',

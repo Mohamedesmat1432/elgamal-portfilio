@@ -10,7 +10,7 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class PermissionList extends Component
+class PermissionTrashList extends Component
 {
     use SortableTrait, WithPagination;
     public PermissionForm $form;
@@ -19,7 +19,7 @@ class PermissionList extends Component
     {
         $this->authorize('permission-trash-list');
 
-        return view('livewire.trash.permissions.permission-list');
+        return view('livewire.trash.permissions.permission-trash-list');
     }
 
     #[Computed, On('refresh-permission-trash-list')]

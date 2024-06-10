@@ -12,7 +12,7 @@ trait LinksTrait
     {
         $logout();
         $this->redirect('/', navigate: true);
-    }  
+    }
 
     public function sidebarLinks()
     {
@@ -30,6 +30,13 @@ trait LinksTrait
                 'icon' => 'lock-open',
                 'permission'=> 'permission-list',
                 'count'=> Permission::withoutTrashed()->count(),
+            ],
+            [
+                'name' => 'trash.permissions',
+                'trans' => __('trans.trash_permissions'),
+                'icon' => 'lock-open',
+                'permission'=> 'permission-trash-list',
+                'count'=> Permission::onlyTrashed()->count(),
             ],
             [
                 'name' => 'roles',

@@ -12,8 +12,9 @@
             :class="show ? 'w-80 p-5' : 'w-12'" x-on:click.outside="show = false" x-cloak>
             <!-- Toggle button -->
             <button x-on:click="show = !show"
-                class="absolute ltr:-right-10 rtl:-left-10 top-20 cursor-pointer shadow-lg border-1 border-black bg-gray-200 p-1">
-                <x-icon name="cog" class="h-8 w-8 transform transition-transform duration-300 animate-spin fill-gray-300" />
+                class="absolute ltr:-right-10 rtl:-left-10 top-32 mt-3 cursor-pointer shadow-lg border-1 border-black bg-gray-200 p-1">
+                <x-icon name="cog-6-tooth"
+                    class="h-8 w-8 transform transition-transform duration-300 animate-spin fill-gray-300" />
                 <!-- SVG icon -->
                 {{-- <svg :class="show ? 'rotate-270' : 'rotate-90'"
                     class="h-4 w-4 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24"

@@ -32,7 +32,7 @@ class RoleForm extends Form
     public function store()
     {
         $validated = $this->validate();
-        $role = Role::create($validated);
+        $role = Role::withoutTrashed()->create($validated);
         $role->syncPermissions($this->permission);
         $this->refresh();
     }
