@@ -11,7 +11,7 @@ class PermissionRestore extends Component
 {
     use NotifyTrait;
     public PermissionForm $form;
-    
+
     public function render()
     {
         return view('livewire.trash.permissions.permission-restore');
