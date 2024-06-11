@@ -12,7 +12,9 @@ use App\Http\Controllers\Pages\{
     UserController
 };
 use App\Http\Controllers\Pages\Trash\{
-    PermissionTrashController
+    PermissionTrashController,
+    RoleTrashController,
+    UserTrashController
 };
 
 Route::prefix(LaravelLocalization::setLocale())
@@ -28,10 +30,12 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::get('dashboard', DashboardController::class)->name('dashboard');
             Route::get('permissions', PermissionController::class)->name('permissions');
-            Route::get('trash-permissions', PermissionTrashController::class)->name('trash.permissions');
             Route::get('roles', RoleController::class)->name('roles');
             Route::get('users', UserController::class)->name('users');
             Route::get('profile', ProfileController::class)->name('profile');
+            Route::get('trash-permissions', PermissionTrashController::class)->name('trash.permissions');
+            Route::get('trash-roles', RoleTrashController::class)->name('trash.roles');
+            Route::get('trash-users', UserTrashController::class)->name('trash.users');
         });
 
         require __DIR__ . '/auth.php';

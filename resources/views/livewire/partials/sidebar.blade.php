@@ -38,6 +38,7 @@
 
             <!-- Sidebar menu -->
             <ul class="flex flex-col space-y-2 overflow-y-auto overflow-x-hidden scrollbar">
+                {{-- sidebar links --}}
                 @foreach ($this->sidebarLinks() as $link)
                     @can($link['permission'])
                         <li x-show="show || !show" class="group">
@@ -55,19 +56,57 @@
                     @endcan
                 @endforeach
 
-                <li x-data="{ lang: false }" x-on:click="lang = !lang" x-show="show || !show" class="group">
+                {{-- sidebar trash links --}}
+                <li x-data="{ showTrash: false }" x-on:click="showTrash = !showTrash" x-show="show || !show" class="group">
                     <x-sidebar-link class="cursor-pointer mb-2">
                         <!-- Icon -->
-                        <x-icon name="language" />
+                        <x-icon name="trash" />
                         <!-- Text -->
-                        <span x-show="show" x-cloak>
-                            {{ __('trans.lang') }}
+                        <span x-show="show" x-cloak class="flex">
+                            {{ __('trans.trash_list') }}
+                            <x-icon class="w-4 h-4 m-1" name="chevron-down" x-show="!showTrash" />
+                            <x-icon class="w-4 h-4 m-1" name="chevron-up" x-show="showTrash" />
                         </span>
                     </x-sidebar-link>
 
                     <hr class="my-2 border-t border-black" x-show="show" x-cloak />
 
-                    <ul class="flex flex-col space-y-2 overflow-y-auto overflow-x-hidden scrollbar" x-show="lang">
+                    <ul class="flex flex-col space-y-2 overflow-y-auto overflow-x-hidden scrollbar" x-show="showTrash">
+                        @foreach ($this->sidebarTrashLinks() as $link)
+                            @can($link['permission'])
+                                <li x-show="show || !show" class="group">
+                                    <x-sidebar-link :href="route($link['name'])" :active="request()->routeIs($link['name'])" wire:navigate>
+                                        <!-- Icon -->
+                                        <x-icon class="w-5 h-5" name="{{ $link['icon'] }}" />
+                                        <!-- Text -->
+                                        <span x-show="show" x-cloak>
+                                            {{ $link['trans'] . ' ' . $link['count'] }}
+                                        </span>
+                                    </x-sidebar-link>
+
+                                    <hr class="mt-2 border-t border-black" x-show="show" x-cloak />
+                                </li>
+                            @endcan
+                        @endforeach
+                    </ul>
+                </li>
+
+                {{-- language links --}}
+                <li x-data="{ showLang: false }" x-on:click="showLang = !showLang" x-show="show || !show" class="group">
+                    <x-sidebar-link class="cursor-pointer mb-2">
+                        <!-- Icon -->
+                        <x-icon name="language" />
+                        <!-- Text -->
+                        <span x-show="show" x-cloak class="flex">
+                            {{ __('trans.lang') }}
+                            <x-icon class="w-4 h-4 m-1" name="chevron-down" x-show="!showLang" />
+                            <x-icon class="w-4 h-4 m-1" name="chevron-up" x-show="showLang" />
+                        </span>
+                    </x-sidebar-link>
+
+                    <hr class="my-2 border-t border-black" x-show="show" x-cloak />
+
+                    <ul class="flex flex-col space-y-2 overflow-y-auto overflow-x-hidden scrollbar" x-show="showLang">
                         @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                             <li x-show="show || !show" class="group">
                                 <x-sidebar-link :href="LaravelLocalization::getLocalizedURL($localeCode, null, [], true)" :active="$localeCode === LaravelLocalization::getCurrentLocale()">
