@@ -1,40 +1,38 @@
 <?php
 
-namespace App\Livewire\Categorys;
+namespace App\Livewire\Trash\Categorys;
 
 use App\Livewire\Forms\CategoryForm;
 use App\Models\Category;
 use App\Traits\SortableTrait;
 use Livewire\Attributes\Computed;
-use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-#[Layout('layouts.app')]
-class CategoryList extends Component
+class CategoryTrashList extends Component
 {
     use SortableTrait, WithPagination;
     public CategoryForm $form;
 
     public function render()
     {
-        $this->authorize('category-list');
+        $this->authorize('category-trash-list');
 
-        return view('livewire.categorys.category-list');
+        return view('livewire.trash.categorys.category-trash-list');
     }
 
-    #[Computed, On('refresh-category-list')]
+    #[Computed, On('refresh-category-trash-list')]
     public function categories()
     {
-        return Category::withoutTrashed()
+        return Category::onlyTrashed()
             ->search($this->search)
             ->orderBy($this->sort_by, $this->sortDir())
             ->paginate($this->page_count);
     }
 
-    #[On('refresh-category-list')]
-    public function refreshBulkButton()
+    #[On('refresh-category-trash-list')]
+    public function refreshForceBulkButton()
     {
         $this->form->refresh();
     }

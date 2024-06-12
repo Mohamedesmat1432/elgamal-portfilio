@@ -4,6 +4,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 use App\Http\Controllers\Pages\{
+    CategoryController,
     HomeController,
     DashboardController,
     PermissionController,
@@ -12,6 +13,7 @@ use App\Http\Controllers\Pages\{
     UserController
 };
 use App\Http\Controllers\Pages\Trash\{
+    CategoryTrashController,
     PermissionTrashController,
     RoleTrashController,
     UserTrashController
@@ -32,10 +34,12 @@ Route::prefix(LaravelLocalization::setLocale())
             Route::get('permissions', PermissionController::class)->name('permissions');
             Route::get('roles', RoleController::class)->name('roles');
             Route::get('users', UserController::class)->name('users');
+            Route::get('categories', CategoryController::class)->name('categories');
             Route::get('profile', ProfileController::class)->name('profile');
             Route::get('trash-permissions', PermissionTrashController::class)->name('trash.permissions');
             Route::get('trash-roles', RoleTrashController::class)->name('trash.roles');
             Route::get('trash-users', UserTrashController::class)->name('trash.users');
+            Route::get('trash-categories', CategoryTrashController::class)->name('trash.categories');
         });
 
         require __DIR__ . '/auth.php';

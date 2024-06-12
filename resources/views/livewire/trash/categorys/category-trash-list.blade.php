@@ -1,43 +1,41 @@
 <div>
-    @can('permission-create')
-        <livewire:permissions.permission-create />
+    @can('category-restore')
+        <livewire:trash.categorys.category-restore />
     @endcan
 
-    @can('permission-update')
-        <livewire:permissions.permission-update />
+    @can('category-bulk-restore')
+        <livewire:trash.categorys.category-bulk-restore />
     @endcan
 
-    @can('permission-delete')
-        <livewire:permissions.permission-delete />
+    @can('category-force-delete')
+        <livewire:trash.categorys.category-force-delete />
     @endcan
 
-    @can('permission-bulk-delete')
-        <livewire:permissions.permission-bulk-delete />
+    @can('category-force-bulk-delete')
+        <livewire:trash.categorys.category-force-bulk-delete />
     @endcan
 
     <div class="px-8 py-6 mx-8 mt-8">
         <div class="flex">
             <x-text-input type="search" wire:model.live.debounce.500ms="search" placeholder="{{ __('trans.search') }}..."
-                id="permissionSearch" name="search" />
+                id="categorySearch" name="search" />
 
-            @can('permission-create')
-                <x-primary-button class="mx-2" x-on:click.prevent="$dispatch('create-modal')">
-                    <x-icon name="plus" class="w-4 h-4 text-white inline-block" />
-                    {{ __('trans.create') }}
-                </x-primary-button>
-            @else
-                <x-primary-button class="cursor-not-allowed bg-gray-500 mx-2">
-                    <x-icon name="plus" class="w-4 h-4 text-white inline-block" />
-                    {{ __('trans.create') }}
-                </x-primary-button>
+            @can('category-bulk-restore')
+                @if (count($this->form->ids) > 0)
+                    <x-primary-button class="mx-2"
+                        x-on:click.prevent="$dispatch('bulk-restore-modal', {ids: '{{ json_encode($this->form->ids) }}'})">
+                        <x-icon name="arrow-uturn-left" class="w-4 h-4 text-white inline-block" />
+                        {{ __('trans.restore') }}
+                    </x-primary-button>
+                @endif
             @endcan
         </div>
 
         <div class="mt-2">
-            @can('permission-bulk-delete')
+            @can('category-force-bulk-delete')
                 @if (count($this->form->ids) > 0)
                     <x-danger-button
-                        x-on:click.prevent="$dispatch('bulk-delete-modal', {ids: '{{ json_encode($this->form->ids) }}'})">
+                        x-on:click.prevent="$dispatch('force-bulk-delete-modal', {ids: '{{ json_encode($this->form->ids) }}'})">
                         <x-icon name="trash" class="w-4 h-4 text-white inline-block" />
                         <span>{{ __('trans.delete_all') }} {{ count($this->form->ids) }}</span>
                     </x-danger-button>
@@ -50,10 +48,10 @@
         {{-- thead --}}
         <x-slot name="thead">
             <tr>
-                @can('permission-bulk-delete')
+                @can('category-force-bulk-delete')
                     <th class="px-6 py-4">
                         <x-text-input class="cursor-pointer" type="checkbox" wire:model="form.select_all"
-                            wire:click="selectAll" id="permissionSelectAll" name="select_all" />
+                            wire:click="selectAll" id="categorySelectAll" name="select_all" />
                     </th>
                 @endcan
                 <th class="px-6 py-4">
@@ -69,37 +67,46 @@
                     </button>
                 </th>
                 <th class="px-6 py-4">
+                    <button wire:click="sortBy('slug')" class="flex justify-center w-full">
+                        {{ __('trans.slug') }}
+                        <x-sort-icon field="slug" :sort_by="$sort_by" :sort_dir="$sort_dir" />
+                    </button>
+                </th>
+                <th class="px-6 py-4">
                     {{ __('trans.action') }}
                 </th>
             </tr>
         </x-slot>
         {{-- tbody --}}
         <x-slot name="tbody">
-            @forelse ($this->permissions() as $permission)
-                <tr wire:key="permission-{{ $permission->id }}" class="border-b border-neutral-200">
-                    @can('permission-bulk-delete')
+            @forelse ($this->categories as $category)
+                <tr wire:key="trash-category-{{ $category->id }}" class="border-b border-neutral-200">
+                    @can('category-bulk-delete')
                         <td class="px-6 py-4">
                             <x-text-input class="cursor-pointer" type="checkbox" wire:model.live="form.ids"
-                                value="{{ $permission->id }}" id="permissionIds" name="ids" />
+                                value="{{ $category->id }}" id="categoryIds" name="ids" />
                         </td>
                     @endcan
                     <td class="px-6 py-4 font-medium">
-                        {{ $permission->id }}
+                        {{ $category->id }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ $permission->name }}
+                        {{ $category->name }}
                     </td>
                     <td class="px-6 py-4">
-                        @can('permission-update')
-                            <x-icon name="pencil-square" class="w-10 h-10 inline-block cursor-pointer"
-                                x-on:click.prevent="$dispatch('edit-modal', {id: '{{ $permission->id }}'})" />
+                        {{ $category->slug }}
+                    </td>
+                    <td class="px-6 py-4">
+                        @can('category-restore')
+                            <x-icon name="arrow-uturn-left" class="w-10 h-10 inline-block cursor-pointer"
+                                x-on:click.prevent="$dispatch('restore-modal', {id: '{{ $category->id }}', name: '{{ $category->name }}'})" />
                         @else
-                            <x-icon name="pencil-square" class="w-10 h-10 inline-block cursor-not-allowed" />
+                            <x-icon name="arrow-uturn-left" class="w-10 h-10 inline-block cursor-not-allowed" />
                         @endcan
 
-                        @can('permission-delete')
+                        @can('category-force-delete')
                             <x-icon name="trash" class="w-10 h-10 text-red-600 inline-block cursor-pointer"
-                                x-on:click.prevent="$dispatch('delete-modal', {id: '{{ $permission->id }}', name: '{{ $permission->name }}'})" />
+                                x-on:click.prevent="$dispatch('force-delete-modal', {id: '{{ $category->id }}', name: '{{ $category->name }}'})" />
                         @else
                             <x-icon name="trash" class="w-10 h-10 text-red-300 inline-block cursor-not-allowed" />
                         @endcan
@@ -117,6 +124,6 @@
 
     {{-- pagination --}}
     <div class="px-8 mx-8 my-3 py-3">
-        {{ $this->permissions()->withQueryString()->links() }}
+        {{ $this->categories()->withQueryString()->links() }}
     </div>
 </div>

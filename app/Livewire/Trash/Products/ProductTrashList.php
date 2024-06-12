@@ -4,10 +4,10 @@ namespace App\Livewire\Trash\Products;
 
 use Livewire\Component;
 
-class ProductList extends Component
+class ProductTrashList extends Component
 {
     public function render()
     {
-        return view('livewire.trash.products.product-list');
+        return view('livewire.trash.products.product-trash-list');
     }
 }

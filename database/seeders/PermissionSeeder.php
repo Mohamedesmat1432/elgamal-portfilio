@@ -44,6 +44,16 @@ class PermissionSeeder extends Seeder
             ['name' => 'user-force-bulk-delete'],
             ['name' => 'user-restore'],
             ['name' => 'user-bulk-restore'],
+            ['name' => 'category-list'],
+            ['name' => 'category-create'],
+            ['name' => 'category-update'],
+            ['name' => 'category-delete'],
+            ['name' => 'category-bulk-delete'],
+            ['name' => 'category-trash-list'],
+            ['name' => 'category-force-delete'],
+            ['name' => 'category-force-bulk-delete'],
+            ['name' => 'category-restore'],
+            ['name' => 'category-bulk-restore'],
         ];
 
         foreach($permissions as $permission) {

@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('inventories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('qty');
+            $table->bigInteger('quantity');
             $table->foreignId('product_id');
             $table->timestamps();
             $table->softDeletes();

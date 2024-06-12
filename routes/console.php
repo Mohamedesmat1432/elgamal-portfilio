@@ -23,8 +23,9 @@ Artisan::command('livewire:init {name}', function (string $name) {
     Artisan::call("make:livewire Trash.{$name}s.{$name}BulkRestore");
     Artisan::call("make:livewire Trash.{$name}s.{$name}ForceDelete");
     Artisan::call("make:livewire Trash.{$name}s.{$name}ForceBulkDelete");
+    $lower_name = strtolower($name);
     Artisan::call("make:controller Pages/{$name}Controller");
-    Artisan::call("make:view pages/{$name}");
+    Artisan::call("make:view pages/{$lower_name}");
     Artisan::call("make:controller Pages/Trash/{$name}TrashController");
-    Artisan::call("make:view pages/trash/{$name}-trash");
+    Artisan::call("make:view pages/trash/{$lower_name}-trash");
 })->description('Running commands');

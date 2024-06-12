@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 use App\Livewire\Actions\Logout;
+use App\Models\Category;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
@@ -45,6 +46,13 @@ trait LinksTrait
                 'permission'=> 'user-list',
                 'count'=> User::withoutTrashed()->count(),
             ],
+            [
+                'name' => 'categories',
+                'trans' => __('trans.categories'),
+                'icon' => 'folder',
+                'permission'=> 'category-list',
+                'count'=> Category::withoutTrashed()->count(),
+            ],
         ];
     }
 
@@ -71,6 +79,13 @@ trait LinksTrait
                 'icon' => 'user',
                 'permission'=> 'user-trash-list',
                 'count'=> User::onlyTrashed()->count(),
+            ],
+            [
+                'name' => 'trash.categories',
+                'trans' => __('trans.trash_categories'),
+                'icon' => 'folder',
+                'permission'=> 'category-trash-list',
+                'count'=> Category::onlyTrashed()->count(),
             ],
         ];
     }

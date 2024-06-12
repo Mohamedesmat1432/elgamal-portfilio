@@ -16,13 +16,13 @@
     @endcan
 
     <div class="px-8 py-6 mx-8 mt-8">
-        <div class="flex space-x-2">
+        <div class="flex">
             <x-text-input type="search" wire:model.live.debounce.500ms="search" placeholder="{{ __('trans.search') }}..."
                 id="permissionSearch" name="search" />
 
             @can('permission-bulk-restore')
                 @if (count($this->form->ids) > 0)
-                    <x-primary-button
+                    <x-primary-button class="mx-2"
                         x-on:click.prevent="$dispatch('bulk-restore-modal', {ids: '{{ json_encode($this->form->ids) }}'})">
                         <x-icon name="arrow-uturn-left" class="w-4 h-4 text-white inline-block" />
                         {{ __('trans.restore') }}

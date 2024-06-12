@@ -13,7 +13,7 @@ class Inventory extends Model
 
     protected $table = 'inventories';
 
-    protected $fillable = ['product_id', 'qty'];
+    protected $fillable = ['product_id', 'quantity'];
 
     public function product(): BelongsTo
     {

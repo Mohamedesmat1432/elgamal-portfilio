@@ -14,10 +14,8 @@ return new class extends Migration {
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->text('description')->nullable();
-            $table->bigInteger('qty');
-            $table->decimal('purchase_price');
+            $table->bigInteger('quantity');
             $table->decimal('price');
-            $table->decimal('revenue_price');
             $table->foreignId('unit_id')->nullable();
             $table->foreignId('category_id')->nullable();
             $table->foreignId('subcategory_id')->nullable();

@@ -16,17 +16,17 @@
     @endcan
 
     <div class="px-8 py-6 mx-8 mt-8">
-        <div class="flex space-x-2">
+        <div class="flex">
             <x-text-input type="search" wire:model.live.debounce.500ms="search" placeholder="{{ __('trans.search') }}..."
                 id="roleSearch" name="search" />
 
             @can('role-create')
-                <x-primary-button x-on:click.prevent="$dispatch('create-modal')">
+                <x-primary-button class="mx-2" x-on:click.prevent="$dispatch('create-modal')">
                     <x-icon name="plus" class="w-4 h-4 text-white inline-block" />
                     {{ __('trans.create') }}
                 </x-primary-button>
             @else
-                <x-primary-button class="cursor-not-allowed bg-gray-500">
+                <x-primary-button class="cursor-not-allowed bg-gray-500 mx-2">
                     <x-icon name="plus" class="w-4 h-4 text-white inline-block" />
                     {{ __('trans.create') }}
                 </x-primary-button>
