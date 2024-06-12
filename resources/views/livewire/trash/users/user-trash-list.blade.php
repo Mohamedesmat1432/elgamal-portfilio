@@ -15,11 +15,11 @@
         <livewire:trash.users.user-force-bulk-delete />
     @endcan
 
-    <div class="p-6 my-2">
-        <x-text-input type="search" wire:model.live.debounce.500ms="search" placeholder="{{ __('trans.search') }}..."
-            id="userSearch" name="search" />
+    <div class="px-8 py-6 mx-8 mt-8">
+        <div class="flex space-x-2">
+            <x-text-input type="search" wire:model.live.debounce.500ms="search" placeholder="{{ __('trans.search') }}..."
+                id="userSearch" name="search" />
 
-        <div class="mt-2">
             @can('user-bulk-restore')
                 @if (count($this->form->ids) > 0)
                     <x-primary-button
@@ -29,7 +29,9 @@
                     </x-primary-button>
                 @endif
             @endcan
+        </div>
 
+        <div class="mt-2">
             @can('user-force-bulk-delete')
                 @if (count($this->form->ids) > 0)
                     <x-danger-button
@@ -99,8 +101,7 @@
                             <x-icon name="arrow-uturn-left" class="w-10 h-10 inline-block cursor-pointer"
                                 x-on:click.prevent="$dispatch('restore-modal', {id: '{{ $user->id }}', name: '{{ $user->name }}'})" />
                         @else
-                            <x-icon name="arrow-uturn-left"
-                                class="w-10 h-10 text-gray-500 inline-block cursor-not-allowed" />
+                            <x-icon name="arrow-uturn-left" class="w-10 h-10 inline-block cursor-not-allowed" />
                         @endcan
 
                         @can('user-force-delete')
@@ -122,7 +123,7 @@
     </x-table>
 
     {{-- pagination --}}
-    <div class="p-6 min-w-full">
-        {{ $this->users->withQueryString()->links() }}
+    <div class="px-8 mx-8 my-3 py-3">
+        {{ $this->users()->withQueryString()->links() }}
     </div>
 </div>

@@ -15,11 +15,11 @@
         <livewire:users.user-bulk-delete />
     @endcan
 
-    <div class="p-6 my-2">
-        <x-text-input type="search" wire:model.live.debounce.500ms="search" id="userSearch" name="search"
-            placeholder="{{ __('trans.search') }}..." />
+    <div class="px-8 py-6 mx-8 mt-8">
+        <div class="flex space-x-2">
+            <x-text-input type="search" wire:model.live.debounce.500ms="search" id="userSearch" name="search"
+                placeholder="{{ __('trans.search') }}..." />
 
-        <div class="mt-2">
             @can('user-create')
                 <x-primary-button x-on:click.prevent="$dispatch('create-modal')">
                     <x-icon name="plus" class="w-4 h-4 text-white inline-block" />
@@ -31,7 +31,9 @@
                     {{ __('trans.create') }}
                 </x-primary-button>
             @endcan
+        </div>
 
+        <div class="mt-2">
             @can('user-bulk-delete')
                 @if (count($this->form->ids) > 0)
                     <x-danger-button
@@ -102,7 +104,7 @@
                             <x-icon name="pencil-square" class="w-10 h-10 inline-block cursor-pointer"
                                 x-on:click.prevent="$dispatch('edit-modal', {id: '{{ $user->id }}'})" />
                         @else
-                            <x-icon name="pencil-square" class="w-10 h-10 text-gray-500 inline-block cursor-not-allowed" />
+                            <x-icon name="pencil-square" class="w-10 h-10 inline-block cursor-not-allowed" />
                         @endcan
 
                         @can('user-delete')
@@ -124,7 +126,7 @@
     </x-table>
 
     {{-- pagination --}}
-    <div class="p-6 min-w-full">
+    <div class="px-8 mx-8 my-3 py-3">
         {{ $this->users()->withQueryString()->links() }}
     </div>
 </div>

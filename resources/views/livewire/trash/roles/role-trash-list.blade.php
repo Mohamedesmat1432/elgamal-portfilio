@@ -15,11 +15,11 @@
         <livewire:trash.roles.role-force-bulk-delete />
     @endcan
 
-    <div class="p-6 my-2">
-        <x-text-input type="search" wire:model.live.debounce.500ms="search" placeholder="{{ __('trans.search') }}..."
-            id="roleSearch" name="search" />
+    <div class="px-8 py-6 mx-8 mt-8">
+        <div class="flex space-x-2">
+            <x-text-input type="search" wire:model.live.debounce.500ms="search" placeholder="{{ __('trans.search') }}..."
+                id="roleSearch" name="search" />
 
-        <div class="mt-2">
             @can('role-bulk-restore')
                 @if (count($this->form->ids) > 0)
                     <x-primary-button
@@ -29,7 +29,9 @@
                     </x-primary-button>
                 @endif
             @endcan
+        </div>
 
+        <div class="mt-2">
             @can('role-force-bulk-delete')
                 @if (count($this->form->ids) > 0)
                     <x-danger-button
@@ -90,8 +92,7 @@
                             <x-icon name="arrow-uturn-left" class="w-10 h-10 inline-block cursor-pointer"
                                 x-on:click.prevent="$dispatch('restore-modal', {id: '{{ $role->id }}', name: '{{ $role->name }}'})" />
                         @else
-                            <x-icon name="arrow-uturn-left"
-                                class="w-10 h-10 text-gray-500 inline-block cursor-not-allowed" />
+                            <x-icon name="arrow-uturn-left" class="w-10 h-10 inline-block cursor-not-allowed" />
                         @endcan
 
                         @can('role-force-delete')
@@ -113,7 +114,7 @@
     </x-table>
 
     {{-- pagination --}}
-    <div class="p-6 min-w-full">
-        {{ $this->roles->withQueryString()->links() }}
+    <div class="px-8 mx-8 my-3 py-3">
+        {{ $this->roles()->withQueryString()->links() }}
     </div>
 </div>

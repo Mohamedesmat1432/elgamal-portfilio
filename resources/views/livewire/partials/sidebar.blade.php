@@ -13,18 +13,12 @@
             <!-- Toggle button -->
             <button x-on:click="show = !show"
                 class="absolute ltr:-right-10 rtl:-left-10 top-32 mt-3 cursor-pointer shadow-lg border-1 border-black bg-gray-200 p-1">
-                <x-icon name="cog-6-tooth"
-                    class="h-8 w-8 transform transition-transform duration-300 animate-spin fill-gray-300" />
-                <!-- SVG icon -->
-                {{-- <svg :class="show ? 'rotate-270' : 'rotate-90'"
-                    class="h-4 w-4 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                </svg> --}}
+                <!-- Heroicon -->
+                <x-icon name="cog-6-tooth" class="h-8 w-8 animate-spin hover:animate-none text-gray-900" />
             </button>
             <!-- Sidebar header -->
             <div class="inline-block py-2 mb-2">
-                <h1 class="text-white transition-opacity duration-300 font-bold text-2xl" x-show="show" x-cloak>
+                <h1 class="text-white transition-opacity duration-300 font-bold text-2xl capitalize" x-show="show" x-cloak>
                     {{ auth()->user()->name ?? '' }}
                 </h1>
                 <p class="text-white transition-opacity duration-300 font-medium text-md" x-show=" show" x-cloak>
@@ -56,12 +50,12 @@
                     @endcan
                 @endforeach
 
-                {{-- sidebar trash links --}}
+                {{-- trash links --}}
                 <li x-data="{ showTrash: false }" x-on:click="showTrash = !showTrash" x-show="show || !show" class="group">
                     <x-sidebar-link class="cursor-pointer mb-2">
                         <!-- Icon -->
                         <x-icon name="trash" />
-                        <!-- Text -->
+                        <!-- Text Dropdwon-->
                         <span x-show="show" x-cloak class="flex">
                             {{ __('trans.trash_list') }}
                             <x-icon class="w-4 h-4 m-1" name="chevron-down" x-show="!showTrash" />
@@ -96,7 +90,7 @@
                     <x-sidebar-link class="cursor-pointer mb-2">
                         <!-- Icon -->
                         <x-icon name="language" />
-                        <!-- Text -->
+                        <!-- Text Dropdwon-->
                         <span x-show="show" x-cloak class="flex">
                             {{ __('trans.lang') }}
                             <x-icon class="w-4 h-4 m-1" name="chevron-down" x-show="!showLang" />
@@ -128,6 +122,7 @@
                     </ul>
                 </li>
             </ul>
+
             <!-- Sidebar Footer -->
             <div class="mt-auto bg-mint-green-400 rounded-lg shadow-sm" x-show="show || !show" x-cloak>
                 <!-- User Profile -->
