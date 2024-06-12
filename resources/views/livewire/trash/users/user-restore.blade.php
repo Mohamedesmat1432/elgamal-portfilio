@@ -1,5 +1,5 @@
 <div>
-    <x-modal name="restore-role-modal" :show="$errors->isNotEmpty()" focusable>
+    <x-modal name="restore-user-modal" :show="$errors->isNotEmpty()" focusable>
         <form wire:submit="restore" class="p-6">
             @csrf
             <h2 class="text-2xl font-medium text-gray-900">
