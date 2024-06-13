@@ -2,8 +2,10 @@
 
 namespace App\Traits;
 use App\Livewire\Actions\Logout;
+use App\Models\Branch;
 use App\Models\Category;
 use App\Models\Permission;
+use App\Models\Product;
 use App\Models\Role;
 use App\Models\Subcategory;
 use App\Models\User;
@@ -20,11 +22,11 @@ trait LinksTrait
     {
         return [
             [
-                'name' => 'dashboard',
-                'trans' => __('trans.dashboard'),
-                'icon' => 'home',
-                'permission' => '',
-                'count' => '',
+                'name' => 'branches',
+                'trans' => __('trans.branches'),
+                'icon' => 'map',
+                'permission' => 'branch-list',
+                'count' => Branch::withoutTrashed()->count(),
             ],
             [
                 'name' => 'permissions',
@@ -61,12 +63,26 @@ trait LinksTrait
                 'permission' => 'subcategory-list',
                 'count' => Subcategory::withoutTrashed()->count(),
             ],
+            [
+                'name' => 'products',
+                'trans' => __('trans.products'),
+                'icon' => 'list-bullet',
+                'permission' => 'product-list',
+                'count' => Product::withoutTrashed()->count(),
+            ],
         ];
     }
 
     public function sidebarTrashLinks()
     {
         return [
+            [
+                'name' => 'trash.branches',
+                'trans' => __('trans.trash_branches'),
+                'icon' => 'map',
+                'permission' => 'branch-trash-list',
+                'count' => Branch::onlyTrashed()->count(),
+            ],
             [
                 'name' => 'trash.permissions',
                 'trans' => __('trans.trash_permissions'),
@@ -101,6 +117,13 @@ trait LinksTrait
                 'icon' => 'folder-open',
                 'permission' => 'subcategory-list',
                 'count' => Subcategory::onlyTrashed()->count(),
+            ],
+            [
+                'name' => 'trash.products',
+                'trans' => __('trans.trash_products'),
+                'icon' => 'list-bullet',
+                'permission' => 'product-list',
+                'count' => Product::onlyTrashed()->count(),
             ],
         ];
     }

@@ -29,7 +29,7 @@ class SubcategoryUpdate extends Component
     {
         $this->dispatch('open-modal', 'update-subcategory-modal');
         $this->dispatch('refresh-category-list');
-        $this->form->setCategory($id);
+        $this->form->setSubcategory($id);
     }
 
     public function update()

@@ -13,9 +13,10 @@ return new class extends Migration {
         Schema::create('inventories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('quantity');
-            $table->foreignId('product_id');
             $table->timestamps();
             $table->softDeletes();
+            $table->foreignId('product_id')->nullable();
+            $table->foreignId('branch_id')->nullable();
         });
     }
 

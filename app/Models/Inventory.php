@@ -13,17 +13,24 @@ class Inventory extends Model
 
     protected $table = 'inventories';
 
-    protected $fillable = ['product_id', 'quantity'];
+    protected $fillable = ['product_id', 'branch_id', 'quantity'];
 
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
     }
 
+    public function branch(): BelongsTo
+    {
+        return $this->belongsTo(Branch::class);
+    }
+
     public function scopeSearch($query, $search)
     {
         return $query->when($search, function ($query) use ($search) {
-            $query->where('product_id', 'LIKE', "%{$search}%");
+            $query->where('product_id', 'LIKE', "%{$search}%")
+                ->orWhere('branch_id', 'LIKE', "%{$search}%")
+                ->orWhere('quantity', 'LIKE', "%{$search}%");
         });
     }
 }

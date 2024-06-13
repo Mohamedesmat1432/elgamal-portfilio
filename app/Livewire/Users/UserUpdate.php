@@ -17,6 +17,7 @@ class UserUpdate extends Component
     {
         return view('livewire.users.user-update',[
             'roles' => $this->form->roles(),
+            'branches' => $this->form->branches(),
         ]);
     }
 

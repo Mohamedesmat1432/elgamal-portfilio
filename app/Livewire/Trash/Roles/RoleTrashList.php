@@ -6,10 +6,12 @@ use App\Livewire\Forms\RoleForm;
 use App\Models\Role;
 use App\Traits\SortableTrait;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+#[Layout('layouts.app')]
 class RoleTrashList extends Component
 {
     use SortableTrait, WithPagination;

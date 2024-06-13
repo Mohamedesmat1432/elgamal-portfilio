@@ -61,8 +61,8 @@ class CategoryForm extends Form
 
     public function deleteAll($ids)
     {
-        $categorys = Category::withoutTrashed()->whereIn('id', $ids);
-        $categorys->delete();
+        $categories = Category::withoutTrashed()->whereIn('id', $ids);
+        $categories->delete();
         $this->refresh();
     }
 
@@ -75,8 +75,8 @@ class CategoryForm extends Form
 
     public function restoreAll($ids)
     {
-        $categorys = Category::onlyTrashed()->whereIn('id', $ids);
-        $categorys->restore();
+        $categories = Category::onlyTrashed()->whereIn('id', $ids);
+        $categories->restore();
         $this->refresh();
     }
 
@@ -89,8 +89,8 @@ class CategoryForm extends Form
 
     public function forceDeleteAll($ids)
     {
-        $categorys = Category::onlyTrashed()->whereIn('id', $ids);
-        $categorys->forceDelete();
+        $categories = Category::onlyTrashed()->whereIn('id', $ids);
+        $categories->forceDelete();
         $this->refresh();
     }
 }

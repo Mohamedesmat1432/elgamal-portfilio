@@ -6,10 +6,12 @@ use App\Livewire\Forms\CategoryForm;
 use App\Models\Category;
 use App\Traits\SortableTrait;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+#[Layout('layouts.app')]
 class CategoryTrashList extends Component
 {
     use SortableTrait, WithPagination;

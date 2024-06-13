@@ -17,6 +17,7 @@ class UserCreate extends Component
     {
         return view('livewire.users.user-create', [
             'roles' => $this->form->roles(),
+            'branches' => $this->form->branches(),
         ]);
     }
 

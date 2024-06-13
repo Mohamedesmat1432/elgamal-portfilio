@@ -73,7 +73,7 @@
         </x-slot>
         {{-- tbody --}}
         <x-slot name="tbody">
-            @forelse ($this->permissions as $permission)
+            @forelse ($this->permissions() as $permission)
                 <tr wire:key="trash-permission-{{ $permission->id }}" class="border-b border-neutral-200">
                     @can('permission-bulk-delete')
                         <td class="px-6 py-4">

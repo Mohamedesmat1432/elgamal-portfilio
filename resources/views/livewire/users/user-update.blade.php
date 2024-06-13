@@ -29,14 +29,30 @@
                 <x-input-label for="role" value="{{ __('trans.role') }}" class="sr-only" />
 
                 <x-select wire:model="form.role" id="updateUserRole" name="role" multiple>
-                    @forelse ($roles as $name)
-                        <option value="{{ $name }}">{{ $name }}</option>
+                    <option value="">{{ __('trans.choose') }}</option>
+                    @forelse ($roles as $val)
+                        <option value="{{ $val }}">{{ $val }}</option>
                     @empty
                         <option value="">{{ __('trans.empty_data') }}</option>
                     @endforelse
                 </x-select>
 
                 <x-input-error :messages="$errors->get('form.role')" class="mt-2" />
+            </div>
+
+            <div class="mt-6">
+                <x-input-label for="branch_id" value="{{ __('trans.branch') }}" class="sr-only" />
+
+                <x-select wire:model="form.branch_id" id="updateUserBranch" name="branch_id">
+                    <option value="">{{ __('trans.choose') }}</option>
+                    @forelse ($branches as $key => $val)
+                        <option value="{{ $key }}">{{ $val }}</option>
+                    @empty
+                        <option value="">{{ __('trans.empty_data') }}</option>
+                    @endforelse
+                </x-select>
+
+                <x-input-error :messages="$errors->get('form.branch_id')" class="mt-2" />
             </div>
 
             <div class="mt-6 flex justify-start">

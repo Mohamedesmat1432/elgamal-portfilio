@@ -14,11 +14,13 @@ class Product extends Model
 
     protected $table = 'products';
 
-    protected $fillable = ['name', 'description', 'quantity', 'price', 'unit_id', 'category_id', 'subcategory_id'];
+    protected $fillable = ['name', 'description', 'price', 'subcategory_id'];
 
-    public function category(): BelongsTo
+    public function scopeSearch($query, $search)
     {
-        return $this->belongsTo(Category::class);
+        return $query->when($search, function ($query) use ($search) {
+            $query->where('name', 'LIKE', "%{$search}%")->orWhere('subcategory_id', 'LIKE', "%{$search}%");
+        });
     }
 
     public function subcategory(): BelongsTo
@@ -26,20 +28,8 @@ class Product extends Model
         return $this->belongsTo(Subcategory::class);
     }
 
-    public function unit(): BelongsTo
-    {
-        return $this->belongsTo(Unit::class);
-    }
-
     public function inventories(): HasMany
     {
         return $this->hasMany(Inventory::class);
-    }
-
-    public function scopeSearch($query, $search)
-    {
-        return $query->when($search, function ($query) use ($search) {
-            $query->where('product_id', 'LIKE', "%{$search}%");
-        });
     }
 }

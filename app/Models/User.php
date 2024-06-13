@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Str;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -19,7 +18,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password', 'branch_id'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -46,5 +45,10 @@ class User extends Authenticatable
         return $query->when($search, function ($query) use ($search) {
             $query->where('name', 'LIKE', "%{$search}%")->orWhere('name', 'LIKE', "%{$search}%");
         });
+    }
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class);
     }
 }

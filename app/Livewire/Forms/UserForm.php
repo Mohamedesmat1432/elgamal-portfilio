@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Forms;
 
+use App\Models\Branch;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Hash;
 use App\Traits\HelperTrait;
@@ -19,6 +20,7 @@ class UserForm extends Form
     public ?string $email = '';
     public ?string $password = '';
     public ?string $password_confirmation = '';
+    public ?int $branch_id = null;
     public ?array $role = [];
 
     public function rules()
@@ -30,12 +32,18 @@ class UserForm extends Form
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email,' . $this->id],
             'role' => ['sometimes', 'array', 'exists:roles,name'],
             'password' => $pass_rule,
+            'branch_id' => ['required', 'numeric', 'exists:branches,id'],
         ];
     }
 
     public function roles()
     {
         return Role::withoutTrashed()->pluck('name')->toArray();
+    }
+
+    public function branches()
+    {
+        return Branch::withoutTrashed()->pluck('name', 'id')->toArray();
     }
 
     public function store()
@@ -55,6 +63,7 @@ class UserForm extends Form
         $this->name = $this->user->name;
         $this->email = $this->user->email;
         $this->role = $this->user->roles->pluck('name')->toArray();
+        $this->branch_id = $this->user->branch_id;
     }
 
     public function update()

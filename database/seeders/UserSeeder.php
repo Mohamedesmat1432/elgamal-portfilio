@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
             'name' => 'mohamed esmat',
             'email' => 'mohamedesmat1432@gmail.com',
             'password' => Hash::make('P@ssw0rd'),
+            'branch_id' => 1,
         ]);
 
         // Adding permissions via a role

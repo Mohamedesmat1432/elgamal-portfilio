@@ -73,7 +73,7 @@
         </x-slot>
         {{-- tbody --}}
         <x-slot name="tbody">
-            @forelse ($this->roles as $role)
+            @forelse ($this->roles() as $role)
                 <tr wire:key="trash-role-{{ $role->id }}" class="border-b border-neutral-200">
                     @can('role-bulk-delete')
                         <td class="px-6 py-4">

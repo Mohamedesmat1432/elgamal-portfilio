@@ -6,10 +6,12 @@ use App\Livewire\Forms\UserForm;
 use App\Models\User;
 use App\Traits\SortableTrait;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+#[Layout('layouts.app')]
 class UserTrashList extends Component
 {
     use SortableTrait, WithPagination;

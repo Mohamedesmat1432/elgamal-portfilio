@@ -79,7 +79,7 @@
         </x-slot>
         {{-- tbody --}}
         <x-slot name="tbody">
-            @forelse ($this->subcategories as $subcategory)
+            @forelse ($this->subcategories() as $subcategory)
                 <tr wire:key="trash-subcategory-{{ $subcategory->id }}" class="border-b border-neutral-200">
                     @can('subcategory-bulk-delete')
                         <td class="px-6 py-4">

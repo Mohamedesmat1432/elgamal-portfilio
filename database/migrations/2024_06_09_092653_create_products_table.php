@@ -14,13 +14,10 @@ return new class extends Migration {
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->text('description')->nullable();
-            $table->bigInteger('quantity');
             $table->decimal('price');
-            $table->foreignId('unit_id')->nullable();
-            $table->foreignId('category_id')->nullable();
-            $table->foreignId('subcategory_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreignId('subcategory_id')->nullable();
         });
     }
 

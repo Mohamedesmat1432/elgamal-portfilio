@@ -13,7 +13,7 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        $permissions = [
+        $branchs = [
             ['name' => 'permission-list'],
             ['name' => 'permission-create'],
             ['name' => 'permission-update'],
@@ -24,6 +24,16 @@ class PermissionSeeder extends Seeder
             ['name' => 'permission-force-bulk-delete'],
             ['name' => 'permission-restore'],
             ['name' => 'permission-bulk-restore'],
+            ['name' => 'branch-list'],
+            ['name' => 'branch-create'],
+            ['name' => 'branch-update'],
+            ['name' => 'branch-delete'],
+            ['name' => 'branch-bulk-delete'],
+            ['name' => 'branch-trash-list'],
+            ['name' => 'branch-force-delete'],
+            ['name' => 'branch-force-bulk-delete'],
+            ['name' => 'branch-restore'],
+            ['name' => 'branch-bulk-restore'],
             ['name' => 'role-list'],
             ['name' => 'role-create'],
             ['name' => 'role-update'],
@@ -64,10 +74,20 @@ class PermissionSeeder extends Seeder
             ['name' => 'subcategory-force-bulk-delete'],
             ['name' => 'subcategory-restore'],
             ['name' => 'subcategory-bulk-restore'],
+            ['name' => 'product-list'],
+            ['name' => 'product-create'],
+            ['name' => 'product-update'],
+            ['name' => 'product-delete'],
+            ['name' => 'product-bulk-delete'],
+            ['name' => 'product-trash-list'],
+            ['name' => 'product-force-delete'],
+            ['name' => 'product-force-bulk-delete'],
+            ['name' => 'product-restore'],
+            ['name' => 'product-bulk-restore'],
         ];
 
-        foreach($permissions as $permission) {
-            Permission::create($permission);
+        foreach($branchs as $branch) {
+            Permission::create($branch);
         }
     }
 }

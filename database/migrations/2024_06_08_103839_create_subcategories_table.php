@@ -14,9 +14,9 @@ return new class extends Migration {
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('slug')->unique();
-            $table->foreignId('category_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreignId('category_id')->nullable();
         });
     }
 

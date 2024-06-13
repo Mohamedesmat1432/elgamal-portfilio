@@ -44,7 +44,7 @@ class SubcategoryForm extends Form
         $this->refresh();
     }
 
-    public function setCategory($id)
+    public function setSubcategory($id)
     {
         $this->refresh();
         $this->subcategory = Subcategory::withoutTrashed()->findOrFail($id);
@@ -70,8 +70,8 @@ class SubcategoryForm extends Form
 
     public function deleteAll($ids)
     {
-        $subcategorys = Subcategory::withoutTrashed()->whereIn('id', $ids);
-        $subcategorys->delete();
+        $subcategories = Subcategory::withoutTrashed()->whereIn('id', $ids);
+        $subcategories->delete();
         $this->refresh();
     }
 
@@ -84,8 +84,8 @@ class SubcategoryForm extends Form
 
     public function restoreAll($ids)
     {
-        $subcategorys = Subcategory::onlyTrashed()->whereIn('id', $ids);
-        $subcategorys->restore();
+        $subcategories = Subcategory::onlyTrashed()->whereIn('id', $ids);
+        $subcategories->restore();
         $this->refresh();
     }
 
@@ -98,8 +98,8 @@ class SubcategoryForm extends Form
 
     public function forceDeleteAll($ids)
     {
-        $subcategorys = Subcategory::onlyTrashed()->whereIn('id', $ids);
-        $subcategorys->forceDelete();
+        $subcategories = Subcategory::onlyTrashed()->whereIn('id', $ids);
+        $subcategories->forceDelete();
         $this->refresh();
     }
 }
